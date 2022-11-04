@@ -5,6 +5,7 @@ def main():
 
     print(result)
 
+
 class Solution:
     def isValid(self, symbles: str) -> bool:
         mapping = {')': '(', '}': '{', ']': '['}

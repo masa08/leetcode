@@ -20,6 +20,6 @@
       "        pass",
       "if __name__ == '__main__': main()"
     ],
-    "description": "Log output to console"
+    "description": "init format for coding"
   }
 }

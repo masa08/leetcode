@@ -1,3 +1,4 @@
+# ref: https://leetcode.com/problems/search-insert-position/solutions/525270/search-insert-position/?orderBy=most_votes
 from typing import List
 
 
@@ -23,6 +24,10 @@ class Solution:
             else:
                 left = mid + 1
 
+        # if the target value is not found,
+        # we can return left
+        # because the loop will be stopped
+        # when right < left and nums[right] < target < nums[left]
         return left
 
 

@@ -1,6 +1,8 @@
 # ref: https://leetcode.com/problems/search-insert-position/solutions/525270/search-insert-position/?orderBy=most_votes
 from typing import List
 
+# TODO: summary
+
 
 def main():
     nums = [1, 3, 5, 6]

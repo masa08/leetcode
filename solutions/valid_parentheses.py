@@ -5,8 +5,6 @@ def main():
 
     print(result)
 
-# TODO: summary
-
 
 class Solution:
     def isValid(self, symbles: str) -> bool:
@@ -14,7 +12,9 @@ class Solution:
         stack = []
 
         for symble in symbles:
+            # check if a symble is ), }, or ]
             if symble in mapping:
+                # if latest symble is valid, pop the value from stack
                 latest_symble = stack[-1] if len(stack) > 0 else None
                 if latest_symble and latest_symble == mapping[symble]:
                     stack.pop()
@@ -23,6 +23,7 @@ class Solution:
             else:
                 stack.append(symble)
 
+        # if valid symbles, stack will be empty
         return len(stack) == 0
 
 

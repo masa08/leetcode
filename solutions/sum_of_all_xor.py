@@ -2,7 +2,7 @@ from typing import List
 
 
 def main():
-    args = [1, 3]
+    args = [5, 1, 6]
     solution = Solution()
     result = solution.subsetXORSum(args)
     print(result)
@@ -14,10 +14,15 @@ class Solution:
         subsets = [0]
 
         for n in nums:
+            # eg: [5,1,6]
+            # 1: [0]
+            # 2: [0,5]
+            # 3: [0,5,1,4]
             new_subsets = subsets.copy()
             for s in subsets:
-                new_subsets.append(s ^ n)
-                result += new_subsets[-1]
+                xorResult = s ^ n
+                new_subsets.append(xorResult)
+                result += xorResult
             subsets = new_subsets
 
         return result

@@ -7,15 +7,23 @@ def main():
 
 class Solution:
     def removeVowels(self, s: str) -> str:
-        toBeDeleted = ['a', 'i', 'u', 'e', 'o']
         result = ""
-
         for i in range(len(s)):
             curr = s[i]
-            if curr not in toBeDeleted:
+            if curr not in "aeiou":
                 result += curr
 
         return result
+
+        # toBeDeleted = ['a', 'i', 'u', 'e', 'o']
+        # result = ""
+
+        # for i in range(len(s)):
+        #     curr = s[i]
+        #     if curr not in toBeDeleted:
+        #         result += curr
+
+        # return result
 
 
 if __name__ == '__main__':

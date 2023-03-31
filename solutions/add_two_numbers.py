@@ -32,28 +32,50 @@ def main():
 
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        l1_arr, l2_arr = [], []
+        dummy = ListNode()
+        current = dummy
+        carry = 0
 
-        # node to array
-        while l1:
-            l1_arr.append(l1.val)
-            l1 = l1.next
-        while l2:
-            l2_arr.append(l2.val)
-            l2 = l2.next
+        while l1 or l2 or carry:
+            value1 = l1.val if l1 else 0
+            value2 = l2.val if l2 else 0
+            total = value1 + value2 + carry
 
-        reversed_l1_int = int("".join(map(str, l1_arr))[::-1])
-        reversed_l2_int = int("".join(map(str, l2_arr))[::-1])
+            if total >= 10:
+                carry = 1
+                total %= 10
+            else:
+                carry = 0
 
-        total = reversed_l1_int + reversed_l2_int
-        reversed_total_list = list(str(total))[::-1]
+            current.next = ListNode(total)
+            current = current.next
 
-        result = copy = ListNode(int(reversed_total_list[0]))
-        for digits in range(1, len(reversed_total_list)):
-            copy.next = ListNode(int(reversed_total_list[digits]))
-            copy = copy.next
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
+        return dummy.next
 
-        return result
+        # l1_arr, l2_arr = [], []
+
+        # # node to array
+        # while l1:
+        #     l1_arr.append(l1.val)
+        #     l1 = l1.next
+        # while l2:
+        #     l2_arr.append(l2.val)
+        #     l2 = l2.next
+
+        # reversed_l1_int = int("".join(map(str, l1_arr))[::-1])
+        # reversed_l2_int = int("".join(map(str, l2_arr))[::-1])
+
+        # total = reversed_l1_int + reversed_l2_int
+        # reversed_total_list = list(str(total))[::-1]
+
+        # result = copy = ListNode(int(reversed_total_list[0]))
+        # for digits in range(1, len(reversed_total_list)):
+        #     copy.next = ListNode(int(reversed_total_list[digits]))
+        #     copy = copy.next
+
+        # return result
 
 
 if __name__ == '__main__':

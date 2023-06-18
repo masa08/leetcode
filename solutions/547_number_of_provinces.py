@@ -35,6 +35,27 @@ class Solution:
 
         return result
 
+        # set approach
+        # cities = len(isConnected)
+        # visited = [False]*cities
+
+        # def _checkConnectedCity(city_index: int):
+        #     city = isConnected[city_index]
+
+        #     for target_city_index in range(cities):
+        #         if city[target_city_index] == 1 and visited[target_city_index] == False:
+        #             visited[target_city_index] = True
+        #             _checkConnectedCity(target_city_index)
+
+        # result = 0
+        # for city_index in range(cities):
+        #     if visited[city_index] == False:
+        #         result += 1
+        #         visited[city_index] = True
+        #         _checkConnectedCity(city_index)
+
+        # return result
+
 
 if __name__ == '__main__':
     main()

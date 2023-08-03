@@ -7,17 +7,19 @@ def main():
 
 class Solution:
     def reverseWords(self, s: str) -> str:
-        arr = s.split(" ")
-        result = []
+        # arr = s.split(" ")
+        # result = []
 
-        arr = reversed(arr)
+        # arr = reversed(arr)
 
-        for element in arr:
-            if element != "":
-                result.append(element)
-        print(result)
+        # for element in arr:
+        #     if element != "":
+        #         result.append(element)
+        # print(result)
 
-        return " ".join(result)
+        # return " ".join(result)
+
+        return " ".join(reversed(s.split()))
 
 
 if __name__ == '__main__':

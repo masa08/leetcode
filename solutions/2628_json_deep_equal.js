@@ -14,7 +14,6 @@ function areDeeplyEqual(o1, o2) {
   if (Array.isArray(o1)) {
     if (o1.length !== o2.length) return false;
     for (let i = 0; i < o1.length; i++) {
-      console.log(o1[i], o2[i]);
       if (!areDeeplyEqual(o1[i], o2[i])) return false;
     }
     return true;

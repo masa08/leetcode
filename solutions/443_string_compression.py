@@ -17,7 +17,8 @@ class Solution:
         anchor = 0
         write = 0
         for index, char in enumerate(chars):
-            if (index + 1) == length or char != chars[index+1]:
+            nextIndex = index + 1
+            if nextIndex == length or char != chars[nextIndex]:
                 chars[write] = char
                 write += 1
                 if index > anchor:
@@ -25,7 +26,7 @@ class Solution:
                     for num in str(repeated_times):
                         chars[write] = num
                         write += 1
-                anchor = index + 1
+                anchor = nextIndex
 
         return write
 

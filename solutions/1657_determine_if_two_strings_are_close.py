@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/determine-if-two-strings-are-close/editorial/
+
 def main():
     solution = Solution()
     result = solution.closeStrings("abc", "bca")
@@ -6,6 +8,7 @@ def main():
 
 class Solution:
     def closeStrings(self, word1: str, word2: str) -> bool:
+        # check if the two words have the same length
         if len(word1) != len(word2):
             return False
 
@@ -24,9 +27,11 @@ class Solution:
             else:
                 word2_map[c] = 1
 
+        # check if the two words have the same characters (condition 1)
         if word1_map.keys() != word2_map.keys():
             return False
 
+        # check if the two words have the same frequency of characters (condition 2)
         word1_frequency_list = list(word1_map.values())
         word2_frequency_list = list(word2_map.values())
         word1_frequency_list.sort()

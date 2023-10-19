@@ -1,7 +1,10 @@
+from typing import List
+
+
 def main():
-    args = [1, 1, 1, 0, 0, 0, 1, 1, 1, 1]
+    args = [0, 1, 1, 1, 0, 1, 0, 1]
     solution = Solution()
-    result = solution.longestOnes(args, 2)
+    result = solution.longestOnes(args, 1)
     print(result)
 
 

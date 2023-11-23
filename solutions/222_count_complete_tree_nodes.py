@@ -18,6 +18,7 @@ class TreeNode:
 
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
+        # BFS way
         if root is None:
             return 0
 
@@ -33,6 +34,12 @@ class Solution:
                 queue.append(node.right)
 
         return count
+
+        # DFS way
+        # if root:
+        #     return 1 + self.countNodes(root.left) + self.countNodes(root.right)
+        # else:
+        #     return 0
 
 
 if __name__ == '__main__':

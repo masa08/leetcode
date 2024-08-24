@@ -10,12 +10,13 @@ def main():
 
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
-        targetIndex = 0
-        for index in range(len(nums)):
-            if nums[index] == 0:
+        slow = 0  # To keep position to insert non 0 number
+        for fast in range(len(nums)):
+            if nums[fast] == 0:
                 continue
-            nums[index], nums[targetIndex] = nums[targetIndex], nums[index]
-            targetIndex += 1
+            if fast != slow:
+                nums[slow], nums[fast] = nums[fast], nums[slow]
+            slow += 1
 
         # for num in nums:
         #     if num == 0:

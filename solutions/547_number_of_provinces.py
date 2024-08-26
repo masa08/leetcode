@@ -37,24 +37,23 @@ class Solution:
 
         # set approach
         # cities = len(isConnected)
-        # visited = [False]*cities
+        # visited = [False] * cities
 
-        # def _checkConnectedCity(city_index: int):
-        #     city = isConnected[city_index]
+        # def _dfs(city_i: int):
+        #     visited[city_i] = True
+        #     city = isConnected[city_i]
 
-        #     for target_city_index in range(cities):
-        #         if city[target_city_index] == 1 and visited[target_city_index] == False:
-        #             visited[target_city_index] = True
-        #             _checkConnectedCity(target_city_index)
+        #     for target_city_i in range(cities):
+        #         if city[target_city_i] == 1 and visited[target_city_i] == False:
+        #             _dfs(target_city_i)
 
-        # result = 0
-        # for city_index in range(cities):
-        #     if visited[city_index] == False:
-        #         result += 1
-        #         visited[city_index] = True
-        #         _checkConnectedCity(city_index)
+        # provincesCount = 0
+        # for city_i in range(cities):
+        #     if visited[city_i] == False:
+        #         provincesCount += 1
+        #         _dfs(city_i)
 
-        # return result
+        # return provincesCount
 
 
 if __name__ == '__main__':

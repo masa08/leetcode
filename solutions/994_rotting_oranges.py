@@ -12,7 +12,11 @@ class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         rows, cols = len(grid), len(grid[0])
         fresh_count = 0
+        minutes_passed = 0
+        # Initialize an array to store the rotten oranges
         rotten = []
+
+        # Traverse the grid to find rotten and fresh oranges
         for r in range(rows):
             for c in range(cols):
                 if grid[r][c] == 2:
@@ -20,21 +24,22 @@ class Solution:
                 elif grid[r][c] == 1:
                     fresh_count += 1
 
-        minutes_passed = 0
+        # Directions for the 4 possible movements (up, down, left, right)
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+
+        # Perform BFS to rot adjacent fresh oranges
         while rotten and fresh_count > 0:
             minutes_passed += 1
             for _ in range(len(rotten)):
-                row, col = rotten.pop(0)
-                for dx, dy in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
-                    neighbor_row, neighbor_col = row + dx, col + dy
-                    if neighbor_row < 0 or neighbor_row >= rows or neighbor_col < 0 or neighbor_col >= cols:
+                x, y = rotten.pop(0)
+                for dx, dy in directions:
+                    nx, ny = x + dx, y + dy
+                    if nx < 0 or nx >= rows or ny < 0 or ny >= cols:
                         continue
-                    if grid[neighbor_row][neighbor_col] == 0 or grid[neighbor_row][neighbor_col] == 2:
-                        continue
-
-                    fresh_count -= 1
-                    grid[neighbor_row][neighbor_col] = 2
-                    rotten.append([neighbor_row, neighbor_col])
+                    if grid[nx][ny] == 1:
+                        fresh_count -= 1
+                        grid[nx][ny] = 2
+                        rotten.append([nx, ny])
 
         return minutes_passed if fresh_count == 0 else -1
 

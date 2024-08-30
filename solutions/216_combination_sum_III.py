@@ -11,19 +11,21 @@ class Solution:
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
         conbinations = []
 
-        def backtrack(remain, curr, start):
-            if remain == 0 and len(curr) == k:
-                conbinations.append(list(curr))
+        def backtrack(start, path, remain):
+            if remain == 0 and len(path) == k:
+                conbinations.append(list(path))
                 return
-            elif remain < 0 or len(curr) == k:
+            elif remain < 0 or len(path) == k:
                 return
 
-            for i in range(start, 9):
-                curr.append(i + 1)
-                backtrack(remain - i - 1, curr, i + 1)
-                curr.pop()
+            for i in range(start, 10):
+                path.append(i)
+                # Recursively call backtrack with the next number and updated remaining sum
+                backtrack(i+1, path, remain - i)
+                # Remove the last number from the path to backtrack
+                path.pop()
 
-        backtrack(n, [], 0)
+        backtrack(1, [], n)
         return conbinations
 
 

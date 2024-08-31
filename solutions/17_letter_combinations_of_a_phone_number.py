@@ -24,7 +24,9 @@ class Solution:
             possible_letters = letters[digits[index]]
             for letter in possible_letters:
                 path.append(letter)
+                # Recursively call backtrack with the next index
                 backtrack(index+1, path)
+                # Remove the last letter to backtrack
                 path.pop()
 
         backtrack(0, [])

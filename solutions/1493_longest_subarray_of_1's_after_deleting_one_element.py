@@ -16,11 +16,13 @@ class Solution:
 
         for i, num in enumerate(nums):
             zeroCount += 1 if num == 0 else 0
+            # if we have more than one zero, we need to shrink the window
             while zeroCount > 1:
                 zeroCount -= 1 if nums[start] == 0 else 0
                 start += 1
 
-            longestWindow = max(longestWindow, i - start)
+            current_window = i - start  # not plus one because we deleted one element
+            longestWindow = max(longestWindow, current_window)
 
         return longestWindow
 

@@ -25,17 +25,12 @@ class MyHashMap:
 
     def remove(self, key: int) -> None:
         index = self.hash(key)
-        bucket = self.table[index]
+        table = self.table[index]
 
-        # bucketに複数の値が入っている場合、
-        # 該当する値を配列の先頭に移動し、pop(0)を実行
-        # eg. index = 57, bucket = [[657, 790], [157, 493]]
-        for i in range(len(bucket)):
-            if bucket[i][0] == key:
-                temp = bucket[i]
-                bucket[i] = bucket[0]
-                bucket[0] = temp
-                bucket.pop(0)
+        for i in range(len(table)):
+            if table[i][0] == key:
+                table[0], table[i] = table[i], table[0]
+                table.pop(0)
                 break
 
 

@@ -11,14 +11,14 @@ def main():
 
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        insert_position = 0
+        k = 0
 
         for i in range(len(nums)):
-            if nums[i] != val:
-                nums[insert_position] = nums[i]
-                insert_position += 1
+            if val != nums[i]:
+                nums[k] = nums[i]
+                k += 1
 
-        return insert_position
+        return k
 
 
 if __name__ == '__main__':

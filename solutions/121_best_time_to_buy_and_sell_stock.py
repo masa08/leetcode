@@ -12,14 +12,14 @@ def main():
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        minPrice = sys.maxsize
-        maxProfit = 0
+        minPrice = prices[0]
+        benefit = 0
 
-        for price in prices:
-            minPrice = min(minPrice, price)
-            maxProfit = max(maxProfit, price-minPrice)
-
-        return maxProfit
+        for i in range(1, len(prices)):
+            minPrice = min(minPrice, prices[i])
+            benefit = max(benefit, prices[i] - minPrice)
+        
+        return benefit
 
 
 if __name__ == '__main__':

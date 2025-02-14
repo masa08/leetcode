@@ -18,8 +18,8 @@ class Solution:
                 counter[nums[i]] += 1
             else:
                 counter[nums[i]] = 1
-        
-        for i,v in counter.items():
+
+        for i, v in counter.items():
             if v >= pivod:
                 return i
 

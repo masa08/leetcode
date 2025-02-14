@@ -4,12 +4,13 @@ def main():
     result = solution.merge(*args)
     print(result)
 
+
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         # Brute force
         # for i in range(n):
         #     nums1[i+m] = nums2[i]
-        
+
         # nums1.sort()
 
         # three pointer
@@ -27,6 +28,6 @@ class Solution:
                 p1 += 1
             p += 1
 
-        
+
 if __name__ == '__main__':
     main()

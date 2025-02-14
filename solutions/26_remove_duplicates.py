@@ -18,7 +18,7 @@ class Solution:
         #         nums[k] = nums[i]
         #         k += 1
         #         seen[nums[i]] = 1
-        
+
         # return k
 
         k = 1
@@ -28,6 +28,7 @@ class Solution:
                 k += 1
 
         return k
+
 
 if __name__ == '__main__':
     main()

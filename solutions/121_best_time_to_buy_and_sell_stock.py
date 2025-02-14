@@ -18,7 +18,7 @@ class Solution:
         for i in range(1, len(prices)):
             minPrice = min(minPrice, prices[i])
             benefit = max(benefit, prices[i] - minPrice)
-        
+
         return benefit
 
 

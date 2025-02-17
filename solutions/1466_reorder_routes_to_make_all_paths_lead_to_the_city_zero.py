@@ -18,19 +18,38 @@ class Solution:
             graph[b].append(a)
             edges.add((a, b))
 
-        def dfs(city, parent):
+        # def dfs(city, parent):
+        #     changes = 0
+        #     for neighbor in graph[city]:
+        #         if neighbor == parent:
+        #             continue
+
+        #         if (city, neighbor) in edges:
+        #             changes += 1
+
+        #         changes += dfs(neighbor, city)
+        #     return changes
+
+        # return dfs(0, -1)
+
+        def bfs(city, parent):
             changes = 0
-            for neighbor in graph[city]:
-                if neighbor == parent:
-                    continue
+            queue = [(city, parent)]
 
-                if (city, neighbor) in edges:
-                    changes += 1
+            while queue:
+                city, parent = queue.pop(0)
+                for neighbor in graph[city]:
+                    if neighbor == parent:
+                        continue
 
-                changes += dfs(neighbor, city)
+                    if (city, neighbor) in edges:
+                        changes += 1
+
+                    queue.append((neighbor, city))
+
             return changes
 
-        return dfs(0, -1)
+        return bfs(0, -1)
 
 
 if __name__ == '__main__':

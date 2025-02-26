@@ -3,9 +3,9 @@ from typing import List
 
 
 def main():
-    args = ""
+    args = [[1, 3, 3, 2], [2, 1, 3, 4], 3]
     solution = Solution()
-    result = solution.hoge()
+    result = solution.maxScore(args[0], args[1], args[2])
     print(result)
 
 

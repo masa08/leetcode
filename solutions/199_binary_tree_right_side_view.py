@@ -2,10 +2,25 @@ from typing import List, Optional
 
 
 def main():
-    args = ""
+    # Create test data: Binary tree
+    # Example tree:
+    #        1
+    #       / \
+    #      2   3
+    #       \    \
+    #        5    4
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(3)
+    root.left.right = TreeNode(5)
+    root.right.right = TreeNode(4)
+
+    # Apply the solution
     solution = Solution()
-    result = solution.hoge()
-    print(result)
+    result = solution.rightSideView(root)
+
+    # Print the result
+    print(f"Right side view: {result}")
 
 
 # Definition for a binary tree node.

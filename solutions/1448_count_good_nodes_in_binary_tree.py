@@ -1,8 +1,22 @@
 def main():
-    args = ""
+    # Create test data: Binary tree
+    # Example tree:
+    #        3
+    #       / \
+    #      1   4
+    #     /   / \
+    #    3   1   5
+    root = TreeNode(3)
+    root.left = TreeNode(1)
+    root.right = TreeNode(4)
+    root.left.left = TreeNode(3)
+    root.right.left = TreeNode(1)
+    root.right.right = TreeNode(5)
+
     solution = Solution()
-    result = solution.hoge()
-    print(result)
+    result = solution.goodNodes(root)
+
+    print(f"Number of good nodes: {result}")
 
 
 class TreeNode:
@@ -15,7 +29,7 @@ class TreeNode:
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         # nodeの最大値を保持しつつ、DFSを行う関数を定義し、条件に合う場合、countを+1する
-        def _goodNodes(self, root: TreeNode, count: int, maxval: int) -> int:
+        def _goodNodes(root: TreeNode, count: int, maxval: int) -> int:
             if root is None:
                 return count
 
@@ -23,14 +37,12 @@ class Solution:
                 count += 1
                 maxval = root.val
 
-            if root.left:
-                count += _goodNodes(self, root.left, 0, maxval)
-            if root.right:
-                count += _goodNodes(self, root.right, 0, maxval)
+            count += _goodNodes(root.left, 0, maxval)
+            count += _goodNodes(root.right, 0, maxval)
 
             return count
 
-        res = _goodNodes(self, root, 0, -float('inf'))
+        res = _goodNodes(root, 0, -float('inf'))
         return res
 
 

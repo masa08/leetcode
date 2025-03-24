@@ -1,6 +1,30 @@
 from typing import Optional
 
 
+def main():
+    root = TreeNode(5)
+    root.left = TreeNode(3)
+    root.right = TreeNode(6)
+    root.left.left = TreeNode(2)
+    root.left.right = TreeNode(4)
+    root.right.right = TreeNode(7)
+
+    # Key to delete
+    key = 3
+
+    # Apply the solution
+    solution = Solution()
+    result = solution.deleteNode(root, key)
+
+    # Print the resulting tree in-order
+    def inorder_traversal(node):
+        if not node:
+            return []
+        return inorder_traversal(node.left) + [node.val] + inorder_traversal(node.right)
+
+    print(f"BST after deleting {key}: {inorder_traversal(result)}")
+
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -40,3 +64,7 @@ class Solution:
         while root.right:
             root = root.right
         return root.val
+
+
+if __name__ == '__main__':
+    main()

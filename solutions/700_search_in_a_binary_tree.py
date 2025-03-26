@@ -8,12 +8,43 @@ class TreeNode:
         self.right = right
 
 
+def arrayToBST(arr):
+    """
+    Helper function to create a BST from a sorted array.
+    """
+    if not arr:
+        return None
+
+    mid = len(arr) // 2
+    root = TreeNode(arr[mid])
+    root.left = arrayToBST(arr[:mid])
+    root.right = arrayToBST(arr[mid + 1:])
+    return root
+
+
 def main():
-    # TODO: treeを配列から作成する
-    args = [4, 2, 7, 1, 3]
+    # Create test data: Binary Search Tree (BST)
+    # Example tree:
+    #        4
+    #       / \
+    #      2   7
+    #     / \
+    #    1   3
+    args = [1, 2, 3, 4, 7]  # Sorted array to create a BST
+    root = arrayToBST(args)
+
+    # Value to search
+    val = 2
+
+    # Apply the solution
     solution = Solution()
-    result = solution.searchBST(args, 2)
-    print(result)
+    result = solution.searchBST(root, val)
+
+    # Print the result
+    if result:
+        print(f"Node found with value: {result.val}")
+    else:
+        print("Value not found in the BST.")
 
 
 class Solution:

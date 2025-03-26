@@ -9,7 +9,6 @@ class TreeNode:
 
 
 def main():
-    # TODO: 生成対応
     root1 = TreeNode(1)
     root1.left = TreeNode(2)
     root1.right = TreeNode(3)

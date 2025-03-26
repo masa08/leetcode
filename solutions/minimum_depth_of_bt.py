@@ -10,11 +10,25 @@ class TreeNode:
 
 
 def main():
-    # TODO: inputデータの作成
-    args = ""
+    # Create test data: Binary tree
+    # Example tree:
+    #        3
+    #       / \
+    #      9   20
+    #         /  \
+    #        15   7
+    root = TreeNode(3)
+    root.left = TreeNode(9)
+    root.right = TreeNode(20)
+    root.right.left = TreeNode(15)
+    root.right.right = TreeNode(7)
+
+    # Apply the solution
     solution = Solution()
-    result = solution.hoge()
-    print(result)
+    result = solution.minDepth(root)
+
+    # Print the result
+    print(f"Minimum depth of the binary tree: {result}")
 
 
 class Solution:

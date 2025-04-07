@@ -15,13 +15,22 @@ class Solution:
         # sorted_num = sorted(nums, reverse=True)
         # return sorted_num[k-1]
 
-        # heap
-        heap = []
-        for num in nums:
-            heapq.heappush(heap, num)
-            if len(heap) > k:
-                heapq.heappop(heap)
-        return heap[0]
+        # heap1
+        # heap = []
+        # for num in nums:
+        #     heapq.heappush(heap, num)
+        #     if len(heap) > k:
+        #         heapq.heappop(heap)
+        # return heap[0]
+
+        # heap2
+        nums = [-1 * num for num in nums]
+        heapq.heapify(nums)
+
+        for _ in range(k-1):
+            heapq.heappop(nums)
+
+        return heapq.heappop(nums) * -1
 
 
 if __name__ == '__main__':

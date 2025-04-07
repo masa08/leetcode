@@ -12,6 +12,7 @@ class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         if len(digits) == 0:
             return []
+
         letters = {"2": "abc", "3": "def", "4": "ghi", "5": "jkl",
                    "6": "mno", "7": "pqrs", "8": "tuv", "9": "wxyz"}
         conbinations = []
@@ -24,9 +25,7 @@ class Solution:
             possible_letters = letters[digits[index]]
             for letter in possible_letters:
                 path.append(letter)
-                # Recursively call backtrack with the next index
                 backtrack(index+1, path)
-                # Remove the last letter to backtrack
                 path.pop()
 
         backtrack(0, [])

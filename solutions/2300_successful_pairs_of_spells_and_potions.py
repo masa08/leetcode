@@ -25,24 +25,42 @@ class Solution:
         # return results
 
         # Binary search solution
-        potions.sort()
-        m = len(potions)
+        # potions.sort()
+        # m = len(potions)
+        # result = []
+
+        # for spell in spells:
+        #     min_potion_needed = math.ceil(success/spell)
+
+        #     left, right = 0, m
+        #     while left < right:
+        #         mid = (left + right) // 2
+        #         if potions[mid] >= min_potion_needed:
+        #             right = mid
+        #         else:
+        #             left = mid + 1
+
+        #     result.append(m - left)
+
+        # return result
+
+        # Binary search solution2
         result = []
+        m = len(potions)
+        potions.sort()
 
         for spell in spells:
-            min_potion_needed = math.ceil(success/spell)
-
             left, right = 0, m
+
             while left < right:
-                mid = (left + right) // 2
-                if potions[mid] >= min_potion_needed:
+                mid = (left+right)//2
+                value = spell * potions[mid]
+
+                if value >= success:
                     right = mid
                 else:
                     left = mid + 1
-
-            result.append(m - left)
-
-        return result
+            result.append(m-left)
 
 
 if __name__ == '__main__':

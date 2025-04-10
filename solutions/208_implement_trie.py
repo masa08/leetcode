@@ -1,29 +1,36 @@
+from typing import Dict
+
+
 def main():
-    args = "apple"
-    trie = Trie()
-    trie.insert(args)
-    print(trie.search(args))
-    print(trie.search("app"))
-    print(trie.startsWith("app"))
+    args = ["apple", "app"]
+    solution = Trie()
+    for word in args:
+        solution.insert(word)
+
+    print(solution.search("app"))  # Returns True
+    print(solution.startsWith("app"))  # Returns True
+    print(solution.search("appl"))  # Returns False
+    print(solution.startsWith("a"))  # Returns True
+    print(solution.startsWith("b"))  # Returns False
 
 
-class TrieNode:
+class TreeNode:
     def __init__(self):
-        self.children = {}
-        self.isEnd = False
+        self.children: Dict[str, TreeNode] = {}
+        self.is_end: bool = False
 
 
 class Trie:
     def __init__(self):
-        self.root = TrieNode()
+        self.root = TreeNode()
 
     def insert(self, word: str) -> None:
         current = self.root
         for char in word:
             if char not in current.children:
-                current.children[char] = TrieNode()
+                current.children[char] = TreeNode()
             current = current.children[char]
-        current.isEnd = True
+        current.is_end = True
 
     def search(self, word: str) -> bool:
         current = self.root
@@ -31,7 +38,7 @@ class Trie:
             if char not in current.children:
                 return False
             current = current.children[char]
-        return current.isEnd
+        return current.is_end
 
     def startsWith(self, prefix: str) -> bool:
         current = self.root

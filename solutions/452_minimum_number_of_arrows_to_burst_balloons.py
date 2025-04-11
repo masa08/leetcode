@@ -11,13 +11,13 @@ def main():
 
 class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
-        points.sort(key=lambda point: point[1])
+        points.sort(key=lambda p: p[1])
+        latest_end = -inf
         count = 0
-        k = -inf
 
         for start, end in points:
-            if start > k:
-                k = end
+            if start > latest_end:
+                latest_end = end
                 count += 1
 
         return count

@@ -1,3 +1,6 @@
+from collections import deque
+
+
 def main():
     params = [100, 80, 60, 70, 60, 75, 85]
     obj = StockSpanner()
@@ -8,7 +11,8 @@ def main():
 
 class StockSpanner:
     def __init__(self):
-        self.stack = []
+        # self.stack = []
+        self.stack = deque([])
 
     def next(self, price):
         span = 1

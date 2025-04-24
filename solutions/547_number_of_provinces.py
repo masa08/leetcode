@@ -38,22 +38,22 @@ class Solution:
         # set approach
         # cities = len(isConnected)
         # visited = [False] * cities
+        # province_count = 0
 
-        # def _dfs(city_i: int):
+        # def _dfs(city_i):
         #     visited[city_i] = True
-        #     city = isConnected[city_i]
+        #     city_conn = isConnected[city_i]
 
-        #     for target_city_i in range(cities):
-        #         if city[target_city_i] == 1 and visited[target_city_i] == False:
-        #             _dfs(target_city_i)
+        #     for i,v in enumerate(city_conn):
+        #         if v == 1 and visited[i] == False:
+        #             _dfs(i)
 
-        # provincesCount = 0
         # for city_i in range(cities):
         #     if visited[city_i] == False:
-        #         provincesCount += 1
+        #         province_count += 1
         #         _dfs(city_i)
 
-        # return provincesCount
+        # return province_count
 
 
 if __name__ == '__main__':

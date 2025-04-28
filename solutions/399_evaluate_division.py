@@ -15,6 +15,7 @@ def main():
 
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
+        # given formulas and results
         graph = defaultdict(dict)
         for (A, B), value in zip(equations, values):
             graph[A][B] = value
@@ -23,15 +24,6 @@ class Solution:
         def dfs(start, end, visited):
             if start not in graph or end not in graph:
                 return -1.0
-
-            """Base case
-            例えば、start = "A", end = "B" の場合、
-            graph["A"] = {"B": 2.0} となっているので、
-            neighbor = "B" となり、
-            result = dfs("B", "B", visited) となる。
-            つまり、start == end となる。
-            このとき、1.0 を返す。
-            """
             if start == end:
                 return 1.0
 

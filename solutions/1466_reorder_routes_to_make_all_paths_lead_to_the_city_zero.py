@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 
 
 def main():
@@ -32,16 +32,17 @@ class Solution:
 
         # return dfs(0, -1)
 
-        def bfs(city, parent):
+        def bfs(city, parent) -> int:
             changes = 0
-            queue = [(city, parent)]
+            queue = deque([(city, parent)])
 
             while queue:
-                city, parent = queue.pop(0)
+                city, parent = queue.popleft()
                 for neighbor in graph[city]:
                     if neighbor == parent:
                         continue
 
+                    # It there is a road from 0 to neighbor, we need to change it
                     if (city, neighbor) in edges:
                         changes += 1
 

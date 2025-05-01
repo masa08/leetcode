@@ -10,20 +10,20 @@ def main():
 
 class Solution:
     def maxProfit(self, prices: List[int], fee: int) -> int:
-        # 取りうる行動
-        # 1. 何もしない
-        # 2. 株を買う
-        # 3. 株を売る
-
         n = len(prices)
-        # 株を持っている=hold or 株を持っていない=free
         hold, free = [0]*n, [0]*n
         hold[0] -= prices[0]
 
+        """
+        Option
+        1. Buy the stock.
+        2. Sell the stock.
+        3. Do nothing.
+        """
         for i in range(1, n):
-            # 1 or 2
+            # 3 or 1
             hold[i] = max(hold[i-1], free[i-1] - prices[i])
-            # 1 or 3
+            # 3 or 2
             free[i] = max(free[i-1], hold[i-1] + prices[i] - fee)
 
         return free[-1]

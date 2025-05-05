@@ -1,3 +1,6 @@
+from common import TreeNode
+
+
 def main():
     # Create test data: Binary tree
     # Example tree:
@@ -17,13 +20,6 @@ def main():
     result = solution.goodNodes(root)
 
     print(f"Number of good nodes: {result}")
-
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
 
 
 class Solution:

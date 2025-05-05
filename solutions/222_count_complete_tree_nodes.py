@@ -1,4 +1,7 @@
+# TODO: Fix bug in the code
 from typing import Optional
+
+from common import TreeNode
 
 
 def main():
@@ -7,13 +10,6 @@ def main():
     result = solution.hoge()
     print(result)
 # Definition for a binary tree node.
-
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
 
 
 class Solution:

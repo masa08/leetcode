@@ -1,18 +1,13 @@
 from typing import Optional
 
+from common import TreeNode
+
 
 def main():
     treenode = TreeNode(0)
     solution = Solution()
     result = solution.isSymmetric(treenode)
     print(result)
-
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
 
 
 class Solution:

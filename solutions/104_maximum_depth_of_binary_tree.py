@@ -1,6 +1,6 @@
 from typing import Optional
 
-from common.tree_node import TreeNode
+from common import TreeNode
 
 
 def makeTree(args):

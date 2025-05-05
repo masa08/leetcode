@@ -1,3 +1,4 @@
+from common import TreeNode
 from typing import Optional
 
 
@@ -23,13 +24,6 @@ def main():
         return inorder_traversal(node.left) + [node.val] + inorder_traversal(node.right)
 
     print(f"BST after deleting {key}: {inorder_traversal(result)}")
-
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
 
 
 class Solution:

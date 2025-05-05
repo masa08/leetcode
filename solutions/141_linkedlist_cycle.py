@@ -1,10 +1,6 @@
 from typing import Optional
 
-
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+from common.list_node import ListNode
 
 
 def makeLinkedList(arr):
@@ -49,6 +45,8 @@ class Solution:
                 return False
             slow = slow.next
             fast = fast.next.next
+
+        return True
 
 
 if __name__ == '__main__':

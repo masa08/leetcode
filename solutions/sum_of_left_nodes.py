@@ -1,5 +1,7 @@
 from typing import Optional
 
+from common.tree_node import TreeNode
+
 
 def main():
     # Create test data: Binary tree
@@ -21,13 +23,6 @@ def main():
 
     # Print the result
     print(f"Sum of left leaves: {result}")
-
-
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
 
 
 class Solution:

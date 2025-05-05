@@ -1,11 +1,6 @@
 from typing import Optional
 
-
-class TreeNode:
-    def __init__(self, val, left=None, right=None) -> None:
-        self.val = val
-        self.left = left
-        self.right = right
+from common.tree_node import TreeNode
 
 
 def makeTree(args):

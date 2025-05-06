@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from common import TreeNode
+from model import TreeNode
 
 
 def main():

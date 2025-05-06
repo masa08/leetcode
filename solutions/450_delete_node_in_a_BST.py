@@ -1,4 +1,4 @@
-from common import TreeNode
+from model import TreeNode
 from typing import Optional
 
 

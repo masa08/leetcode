@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 
-from common import TreeNode
+from model import TreeNode
 
 
 def makeTree(args):

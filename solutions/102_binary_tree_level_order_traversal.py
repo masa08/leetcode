@@ -1,5 +1,5 @@
 # TODO: Fix bug in the code
-from common import TreeNode
+from model import TreeNode
 from typing import List, Optional
 
 

@@ -1,6 +1,6 @@
 from typing import Optional
 
-from common import ListNode
+from model import ListNode
 
 
 def makeLinkedList(arr):

@@ -1,15 +1,17 @@
-# TODO: Fix bug in the code
 from typing import Optional
-
 from model import TreeNode
+from utils import arrayToBST
 
 
 def main():
-    args = ""
+    # Convert array to BST
+    args = [1, 2, 3, 4, 5, 6]
+    root = arrayToBST(args)
+
+    # Solve the problem
     solution = Solution()
-    result = solution.hoge()
+    result = solution.countNodes(root)
     print(result)
-# Definition for a binary tree node.
 
 
 class Solution:

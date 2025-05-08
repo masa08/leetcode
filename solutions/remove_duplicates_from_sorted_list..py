@@ -1,32 +1,14 @@
 from typing import Optional
-
-
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-
-def makeLinkedList(arr):
-    result = copy = ListNode(arr[0])
-    for i in range(1, len(arr)):
-        copy.next = ListNode(arr[i])
-        copy = copy.next
-
-    return result
-
-
-def printLinkedList(node: ListNode):
-    while node:
-        print(node.val)
-        node = node.next
+from model import ListNode
+from utils import makeLinkedList
+from utils import printLinkedListValue
 
 
 def main():
     args = makeLinkedList([1, 1, 2])
     solution = Solution()
     result = solution.deleteDuplicates(args)
-    printLinkedList(result)
+    printLinkedListValue(result)
 
 
 class Solution:

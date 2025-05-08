@@ -1,27 +1,14 @@
 from typing import Optional
 
-
-def makeLinkedList(arr):
-    result = copy = ListNode(arr[0])
-    for i in range(1, len(arr)):
-        copy.next = ListNode(arr[i])
-        copy = copy.next
-
-    return result
+from model import ListNode
+from utils import makeLinkedList, printLinkedListValue
 
 
 def main():
     args = makeLinkedList([1, 2, 3, 4, 5])
     solution = Solution()
     result = solution.reverseList(args)
-    print(result)
-
-
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
+    printLinkedListValue(result)
 
 
 class Solution:

@@ -1,18 +1,16 @@
-# TODO: Fix bug in the code
+from utils import arrayToBST
+
 
 def main():
-    args = [1, 7, 0, 7, -8, None, None]
+    # Convert array to binary tree
+    args = [1, None, 1, 1, 1, None, None, 1, 1, None, 1, None, None, None, 1]
+    root = arrayToBST(args)  # 配列を二分木に変換
+    # Solve the problem
     solution = Solution()
-    result = solution.longestZigZag(args)
+    result = solution.longestZigZag(root)
     print(result)
 
 
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
     def longestZigZag(self, root) -> int:
         self.max_length = 0

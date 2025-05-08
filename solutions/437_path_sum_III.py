@@ -1,20 +1,6 @@
 from collections import defaultdict
-
-
 from model import TreeNode
-
-
-def makeTree(args):
-    nodes = [TreeNode(val) if val else None for val in args]
-    for i, node in enumerate(nodes):
-        if node:
-            left = i * 2 + 1
-            right = i * 2 + 2
-            if left < len(nodes):
-                node.left = nodes[left]
-            if right < len(nodes):
-                node.right = nodes[right]
-    return nodes[0]
+from utils import makeTree
 
 
 def main():

@@ -1,15 +1,13 @@
 from model import TreeNode
 from typing import List, Optional
 
+from utils import makeTree
+
 
 def main():
     # Convert array to BST
     args = [3, 9, 20, None, None, 15, 7]
-    root = TreeNode(args[0])
-    root.left = TreeNode(args[1])
-    root.right = TreeNode(args[2])
-    root.right.left = TreeNode(args[5])
-    root.right.right = TreeNode(args[6])
+    root = makeTree(args)
 
     # Solve the problem
     solution = Solution()

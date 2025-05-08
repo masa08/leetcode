@@ -3,5 +3,5 @@ from model import ListNode
 
 def printLinkedListValue(node: ListNode):
     while node:
-        print(node.val)
+        print(node.value, end=" -> ")
         node = node.next

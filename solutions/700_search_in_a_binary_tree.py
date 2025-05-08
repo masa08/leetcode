@@ -1,6 +1,6 @@
 from typing import Optional
 from model import TreeNode
-from utils import arrayToBST
+from utils import makeBinarySearchTree
 
 
 def main():
@@ -12,7 +12,7 @@ def main():
     #     / \
     #    1   3
     args = [1, 2, 3, 4, 7]  # Sorted array to create a BST
-    root = arrayToBST(args)
+    root = makeBinarySearchTree(args)
 
     # Value to search
     val = 2

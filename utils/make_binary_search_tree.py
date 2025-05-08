@@ -2,7 +2,7 @@
 from model import TreeNode
 
 
-def arrayToBST(arr):
+def makeBinarySearchTree(arr):
     """
     Helper function to create a BST from a sorted array.
     """
@@ -11,6 +11,6 @@ def arrayToBST(arr):
 
     mid = len(arr) // 2
     root = TreeNode(arr[mid])
-    root.left = arrayToBST(arr[:mid])
-    root.right = arrayToBST(arr[mid + 1:])
+    root.left = makeBinarySearchTree(arr[:mid])
+    root.right = makeBinarySearchTree(arr[mid + 1:])
     return root

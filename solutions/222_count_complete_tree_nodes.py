@@ -1,12 +1,12 @@
 from typing import Optional
 from model import TreeNode
-from utils import arrayToBST
+from utils import makeBinarySearchTree
 
 
 def main():
     # Convert array to BST
     args = [1, 2, 3, 4, 5, 6]
-    root = arrayToBST(args)
+    root = makeBinarySearchTree(args)
 
     # Solve the problem
     solution = Solution()

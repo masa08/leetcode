@@ -3,20 +3,22 @@
 from collections import defaultdict
 from typing import Optional
 
+from model import TreeNode
+
 
 def main():
-    args = [1, 7, 0, 7, -8, None, None]
+    # Manually construct the binary tree
+    # Input: [1, 7, 0, 7, -8, None, None]
+    root = TreeNode(1)
+    root.left = TreeNode(7)
+    root.right = TreeNode(0)
+    root.left.left = TreeNode(7)
+    root.left.right = TreeNode(-8)
+
+    # Solve the problem
     solution = Solution()
-    result = solution.maxLevelSum(args)
+    result = solution.maxLevelSum(root)
     print(result)
-
-
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
 
 
 class Solution:

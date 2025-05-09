@@ -1,19 +1,14 @@
-# TODO: Fix bug in the code
-
 from collections import defaultdict
 from typing import Optional
 
 from model import TreeNode
+from utils import makeTree
 
 
 def main():
     # Manually construct the binary tree
-    # Input: [1, 7, 0, 7, -8, None, None]
-    root = TreeNode(1)
-    root.left = TreeNode(7)
-    root.right = TreeNode(0)
-    root.left.left = TreeNode(7)
-    root.left.right = TreeNode(-8)
+    args = [1, 7, 0, 7, -8, None, None]
+    root = makeTree(args)
 
     # Solve the problem
     solution = Solution()

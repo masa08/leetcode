@@ -1,13 +1,17 @@
-# TODO: Fix bug in the code
 from typing import Optional
 
 from model import TreeNode
+from utils import makeTree
 
 
 def main():
-    args = [1, 2, 2, 1, 1, 3]
+    args1 = [3, 5, 1, 6, 2, 9, 8, None, None, 7, 4]
+    root1 = makeTree(args1)
+    args2 = [3, 5, 1, 6, 7, 4, 2, None, None, None, None, None, None, 9, 8]
+    root2 = makeTree(args2)
+
     solution = Solution()
-    result = solution.uniqueOccurrences(args)
+    result = solution.leafSimilar(root1, root2)
     print(result)
 
 

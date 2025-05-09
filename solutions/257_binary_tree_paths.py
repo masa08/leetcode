@@ -1,10 +1,13 @@
-# TODO: Fix bug in the code
 from model import TreeNode
 from typing import List, Optional
+
+from utils import makeTree
 
 
 def main():
     args = [1, 2, 3, None, 5]
+    args = makeTree(args)
+
     solution = Solution()
     result = solution.binaryTreePaths(args)
     print(result)

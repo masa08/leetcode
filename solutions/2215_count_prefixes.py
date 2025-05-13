@@ -2,10 +2,12 @@ from typing import List
 
 
 def main():
-    args = ""
+    # Test case
+    words = ["a", "b", "c", "ab", "bc", "abc"]
+    s = "abc"  # Expected: 3 (prefixes: "a", "ab", "abc")
     solution = Solution()
-    result = solution.hoge()
-    print(result)
+    result = solution.countPrefixes(words, s)
+    print(f"Input: words={words}, s={s} -> Output: {result}")
 
 
 class Solution:

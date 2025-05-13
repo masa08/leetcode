@@ -1,8 +1,12 @@
+from typing import List
+
+
 def main():
-    args = ""
+    # Test case
+    args = [0, 1, 2, 4, 5, 7]
     solution = Solution()
-    result = solution.hoge()
-    print(result)
+    result = solution.summaryRanges(args)
+    print(f"Input: {args} -> Output: {result}")
 
 
 class Solution:

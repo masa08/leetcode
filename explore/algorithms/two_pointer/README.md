@@ -63,10 +63,10 @@ for fast in range(len(array)):
 
 LeetCodeでTwo Pointerを使う代表的な問題：
 
-- 15. 3Sum
-- 11. Container With Most Water
-- 125. Valid Palindrome
-- 167. Two Sum II - Input Array Is Sorted
-- 283. Move Zeroes
-- 344. Reverse String
-- 151. Reverse Words in a String
+-  3Sum
+-  Container With Most Water
+-  Valid Palindrome
+-  Two Sum II - Input Array Is Sorted
+-  Move Zeroes
+-  Reverse String
+-  Reverse Words in a String

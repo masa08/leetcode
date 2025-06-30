@@ -82,9 +82,9 @@ class ListNode:
 
 ## 典型的な問題
 
-- 206. Reverse Linked List
-- 21. Merge Two Sorted Lists
-- 141. Linked List Cycle
-- 234. Palindrome Linked List
-- 19. Remove Nth Node From End of List
-- 160. Intersection of Two Linked Lists
+-  Reverse Linked List
+-  Merge Two Sorted Lists
+-  Linked List Cycle
+-  Palindrome Linked List
+-  Remove Nth Node From End of List
+-  Intersection of Two Linked Lists

@@ -97,8 +97,8 @@ item = queue.pop(0)  # dequeue - O(n) ⚠️非効率
 
 ## 典型的な問題
 
-- 102. Binary Tree Level Order Traversal
-- 225. Implement Stack using Queues
-- 622. Design Circular Queue
-- 239. Sliding Window Maximum
-- 346. Moving Average from Data Stream
+-  Binary Tree Level Order Traversal
+-  Implement Stack using Queues
+-  Design Circular Queue
+-  Sliding Window Maximum
+-  Moving Average from Data Stream

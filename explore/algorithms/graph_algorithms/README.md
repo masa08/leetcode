@@ -41,9 +41,9 @@
 
 ## 典型的な問題
 
-- 200. Number of Islands
-- 207. Course Schedule
-- 133. Clone Graph
-- 547. Number of Provinces
-- 743. Network Delay Time
-- 1584. Min Cost to Connect All Points
+- Number of Islands
+- Course Schedule
+- Clone Graph
+- Number of Provinces
+- Network Delay Time
+- Min Cost to Connect All Points

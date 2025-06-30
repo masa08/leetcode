@@ -79,8 +79,8 @@ max_val = -heapq.heappop(max_heap)  # 4
 
 ## 典型的な問題
 
-- 215. Kth Largest Element in an Array
-- 347. Top K Frequent Elements
-- 23. Merge k Sorted Lists
-- 295. Find Median from Data Stream
-- 703. Kth Largest Element in a Stream
+-  Kth Largest Element in an Array
+-  Top K Frequent Elements
+-  Merge k Sorted Lists
+-  Find Median from Data Stream
+-  Kth Largest Element in a Stream

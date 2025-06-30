@@ -42,9 +42,9 @@
 
 ## 典型的な問題
 
-- 70. Climbing Stairs
-- 198. House Robber
-- 300. Longest Increasing Subsequence
-- 1143. Longest Common Subsequence
-- 62. Unique Paths
-- 322. Coin Change
+-  Climbing Stairs
+-  House Robber
+-  Longest Increasing Subsequence
+-  Longest Common Subsequence
+-  Unique Paths
+-  Coin Change

@@ -68,7 +68,7 @@
 
 ## 関連問題
 
-- 912. Sort an Array
-- 148. Sort List
-- 215. Kth Largest Element in an Array
-- 56. Merge Intervals
+-  Sort an Array
+-  Sort List
+-  Kth Largest Element in an Array
+-  Merge Intervals

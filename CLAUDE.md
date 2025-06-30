@@ -10,8 +10,12 @@
 - `model/` - コアデータ構造の定義（`ListNode`、`TreeNode`）
 - `utils/` - データ構造の作成と操作のためのヘルパー関数
 - `explore/` - アルゴリズムとデータ構造の実装
-  - `algorithms/` - アルゴリズムの実装（two_pointer、sorting、dynamic_programming、graph_algorithms）
-  - `data_structures/` - データ構造の実装（heap、linked_list、queue、graph）
+  - `algorithms/` - 問題解決手法とテクニック（"どう処理するか"）
+  - `data_structures/` - データの格納と組織化（"どう格納するか"）
+
+### 分類の基準
+- **データ構造** = "どう格納するか"（What to store）
+- **アルゴリズム** = "どう処理するか"（How to process）
 
 ## 開発原則
 

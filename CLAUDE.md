@@ -14,8 +14,32 @@
   - `data_structures/` - データの格納と組織化（"どう格納するか"）
 
 ### 分類の基準
+
 - **データ構造** = "どう格納するか"（What to store）
 - **アルゴリズム** = "どう処理するか"（How to process）
+
+## 学習教材
+
+### 主要教材
+
+**LeetCode 75**: <https://leetcode.com/studyplan/leetcode-75/>
+
+- このリポジトリの主要な学習教材
+- `explore/`ディレクトリの構成はLeetCode 75のトピックに基づく
+- 体系的なアルゴリズム・データ構造学習の基礎
+
+**Cracking the Coding Interview (6th Edition)**: 189 Programming Questions and Solutions
+
+- コーディング面接対策の定番書籍
+- アルゴリズム・データ構造の体系的な理解
+- 面接でよく出る問題パターンの網羅的な学習
+
+### 学習の進め方
+
+1. **LeetCode 75の問題を順次解く**
+2. **解いた問題のパターンを`explore/`で確認・整理**
+3. **類似問題で応用力を確認**
+4. **実装したパターンを`explore/`に抽象化して保存**
 
 ## 開発原則
 

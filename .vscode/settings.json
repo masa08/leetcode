@@ -5,4 +5,8 @@
   "terminal.integrated.env.osx": {
     "PYTHONPATH": "${workspaceFolder}"
   },
+  "[markdown]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
 }

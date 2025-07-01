@@ -10,21 +10,24 @@ def main():
 
 class Solution:
     def equalPairs(self, grid: List[List[int]]) -> int:
-        count = 0
         n = len(grid)
+        if (n == 1):
+            return 1
+
+        count = 0
         row_counter = dict()
 
         for row in range(n):
-            target = tuple(grid[row])
-            if target in row_counter:
-                row_counter[target] += 1
+            row_tuple = tuple(grid[row])
+            if row_tuple in row_counter:
+                row_counter[row_tuple] += 1
             else:
-                row_counter[target] = 1
+                row_counter[row_tuple] = 1
 
-        for c in range(n):
-            col = [grid[i][c] for i in range(n)]
-            if tuple(col) in row_counter:
-                count += row_counter[tuple(col)]
+        for col in range(n):
+            col_tuple = tuple(grid[i][col] for i in range(n))
+            if col_tuple in row_counter:
+                count += row_counter[col_tuple]
 
         return count
 

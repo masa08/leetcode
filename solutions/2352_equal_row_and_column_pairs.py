@@ -14,7 +14,7 @@ class Solution:
         if (n == 1):
             return 1
 
-        count = 0
+        result = 0
         row_counter = dict()
 
         for row in range(n):
@@ -25,11 +25,11 @@ class Solution:
                 row_counter[row_tuple] = 1
 
         for col in range(n):
-            col_tuple = tuple(grid[i][col] for i in range(n))
+            col_tuple = tuple(grid[row][col] for row in range(n))
             if col_tuple in row_counter:
-                count += row_counter[col_tuple]
+                result += row_counter[col_tuple]
 
-        return count
+        return result
 
 
 if __name__ == '__main__':

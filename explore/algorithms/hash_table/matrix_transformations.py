@@ -35,3 +35,14 @@ def frequency_counting_approach(grid):
 # - tuple使用（ハッシュ可能）
 # - dict.get()でデフォルト値
 # - 時間計算量: O(n²)
+
+# なぜtupleなのか？
+# listは mutable（変更可能）なので辞書のキーにできない
+# tupleは immutable（不変）なのでhashable = 辞書のキーに使える
+#
+# 例：
+# row_list = [1, 2, 3]
+# row_counter[row_list] = 1  # ❌ TypeError: unhashable type: 'list'
+#
+# row_tuple = (1, 2, 3)
+# row_counter[row_tuple] = 1  # ✅ 正常動作

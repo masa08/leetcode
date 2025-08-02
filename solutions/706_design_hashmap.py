@@ -11,22 +11,19 @@ class MyHashMap:
         for i, (k, _) in enumerate(self.table[index]):
             if k == key:
                 self.table[index][i] = (key, value)
-                break
-        else:
-            self.table[index].append((key, value))
+                return
+        self.table[index].append((key, value))
 
     def get(self, key: int) -> int:
         index = self.hash(key)
         for k, v in self.table[index]:
             if k == key:
                 return v
-        else:
-            return -1
+        return -1
 
     def remove(self, key: int) -> None:
         index = self.hash(key)
         table = self.table[index]
-
         for i, (k, _) in enumerate(table):
             if k == key:
                 table.pop(i)

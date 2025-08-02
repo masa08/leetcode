@@ -52,6 +52,10 @@ class Stack(object):
             return None
         return self.ll.delete_first()
 
+    def peak(self):
+        "Return the top of the stack"
+        return self.ll.head.value if self.ll.head else None
+
 
 # Test cases
 # Set up some Elements
@@ -66,9 +70,24 @@ stack = Stack(e1)
 # Test stack functionality
 stack.push(e2)
 stack.push(e3)
-print(stack.pop().value)
-print(stack.pop().value)
-print(stack.pop().value)
-print(stack.pop())
+
+# Test peak functionality
+print("Testing peak():")
+print(f"Peak value (should be 3): {stack.peak()}")
+print(f"Peak again (should still be 3): {stack.peak()}")
+
+# Test pop functionality
+print("\nTesting pop():")
+print(f"Pop value (should be 3): {stack.pop().value}")
+print(f"Pop value (should be 2): {stack.pop().value}")
+print(f"Pop value (should be 1): {stack.pop().value}")
+print(f"Pop from empty (should be None): {stack.pop()}")
+
+# Test peak on empty stack
+print("\nTesting peak() on empty stack:")
+print(f"Peak on empty stack (should be None): {stack.peak()}")
+
+# Push and peak again
 stack.push(e4)
-print(stack.pop().value)
+print(f"\nAfter pushing 4, peak (should be 4): {stack.peak()}")
+print(f"Pop value (should be 4): {stack.pop().value}")

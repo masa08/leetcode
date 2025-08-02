@@ -1,127 +1,162 @@
 # CLAUDE.md
 
-このファイルは、このリポジトリでコードを扱う際のClaude Code (claude.ai/code) への指針を提供します。
+LeetCodeソリューションリポジトリのClaude Code向けガイドライン。
 
 ## リポジトリ構造
 
-これは問題番号とトピック別に整理されたLeetCodeソリューションリポジトリです：
+```text
+leetcode/
+├── solutions/        # 問題番号で管理（例: 1_two_sum.py）
+├── model/           # 共通データ構造（ListNode, TreeNode）
+├── utils/           # ヘルパー関数
+└── explore/         # パターンの抽象化
+    ├── algorithms/  # アルゴリズム手法
+    └── data_structures/  # データ構造実装
+```
 
-- `solutions/` - 問題IDで番号付けされた個別のLeetCode問題解答
-- `model/` - コアデータ構造の定義（`ListNode`、`TreeNode`）
-- `utils/` - データ構造の作成と操作のためのヘルパー関数
-- `explore/` - アルゴリズムとデータ構造の実装
-  - `algorithms/` - 問題解決手法とテクニック（"どう処理するか"）
-  - `data_structures/` - データの格納と組織化（"どう格納するか"）
+## 学習リソース
 
-### 分類の基準
+1. **[LeetCode 75](https://leetcode.com/studyplan/leetcode-75/)** - 基礎固め
+2. **[Top Interview 150](https://leetcode.com/studyplan/top-interview-150/)** - 面接頻出問題
+3. **Cracking the Coding Interview** - 体系的学習
 
-- **データ構造** = "どう格納するか"（What to store）
-- **アルゴリズム** = "どう処理するか"（How to process）
+## コーディング原則
 
-## 学習教材
+### 最重要5原則
 
-### 主要教材
+#### 1. **UMPIRE法** - 体系的問題解決
 
-**LeetCode 75**: <https://leetcode.com/studyplan/leetcode-75/>
+```text
+U - Understand: 問題理解、エッジケース列挙
+M - Match: 既知パターンとマッチング
+P - Plan: アプローチ説明、計算量分析
+I - Implement: クリーンな実装
+R - Review: コードウォークスルー
+E - Evaluate: 時間/空間計算量の確認
+```
 
-- このリポジトリの主要な学習教材
-- `explore/`ディレクトリの構成はLeetCode 75のトピックに基づく
-- 体系的なアルゴリズム・データ構造学習の基礎
+💡 思考プロセスの明確さ、質問力、エッジケース考慮
 
-**Cracking the Coding Interview (6th Edition)**: 189 Programming Questions and Solutions
+#### 2. **エッジファースト** - 防御的プログラミング
 
-- コーディング面接対策の定番書籍
-- アルゴリズム・データ構造の体系的な理解
-- 面接でよく出る問題パターンの網羅的な学習
+```python
+def solve(nums: List[int]) -> int:
+    # エッジケースを最初に処理
+    if not nums:
+        return 0
+    if len(nums) == 1:
+        return nums[0]
+    
+    # メインロジック
+    # ...
+```
 
-### 学習の進め方
+💡 堅牢性、プロダクションレディなコード
 
-1. **LeetCode 75の問題を順次解く**
-2. **解いた問題のパターンを`explore/`で確認・整理**
-3. **類似問題で応用力を確認**
-4. **実装したパターンを`explore/`に抽象化して保存**
+#### 3. **段階的最適化** - 正確性から効率性へ
 
-## 開発原則
+```python
+# Step 1: ブルートフォース O(n²)
+def twoSum_v1(nums, target):
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return [i, j]
 
-### DRY (Don't Repeat Yourself)
+# Step 2: 最適化 O(n)
+def twoSum_v2(nums, target):
+    seen = {}
+    for i, num in enumerate(nums):
+        if target - num in seen:
+            return [seen[target - num], i]
+        seen[num] = i
+```
 
-- 共通データモデルは`model/`に配置
-- 再利用可能なユーティリティは`utils/`に配置
-- 抽象化されたアルゴリズムパターンは`explore/`に整理
+💡 最適化能力、トレードオフの理解
 
-### YAGNI (You Aren't Gonna Need It)
+#### 4. **パターン認識** - 高頻度テクニック
 
-- 将来使うかもしれない機能を先回りして実装しない
-- 現在の問題を解決するために必要な最小限のコードを書く
-- 過度な抽象化や汎用化を避ける
+- **Two Pointers**: ソート済み配列、ペア探索
+- **Sliding Window**: 部分配列、部分文字列
+- **Hash Map**: O(1)ルックアップ
+- **DFS/BFS**: グラフ、ツリー探索
+- **Dynamic Programming**: 最適化問題
 
-### KISS (Keep It Simple, Stupid)
+💡 問題解決の効率性、パターン適用力
 
-- シンプルで読みやすいコードを優先
-- 複雑な解法より理解しやすい解法を選ぶ
-- 面接では特に、明確で追跡しやすい実装が重要
+#### 5. **明確性優先** - 可読性とコミュニケーション
 
-### SOLID原則 - 特に単一責任の原則(SRP)
+```python
+# 悪い例
+def fn(a, n):
+    i, j = 0, n-1
+    while i < j:
+        # ...
 
-- 各関数・クラスは一つの責任のみを持つ
-- 変更理由は一つだけになるよう設計
-- 例：文字列処理とデータ構造操作は別関数に分離
+# 良い例  
+def findPair(arr: List[int], target: int) -> List[int]:
+    left, right = 0, len(arr) - 1
+    while left < right:
+        # Two pointersで目標値のペアを探索
+```
 
-### その他の推奨原則
+💡 チーム開発能力、保守性への配慮
 
-- **早期リターン**: ネストを減らし、エッジケースを先に処理
-- **明確な変数名**: `i`, `j`より`left`, `right`など意味のある名前
-- **最適化は最後に**: まず正しく動くコードを書き、その後で最適化
+### 実装ガイドライン
 
-## ソリューション構造
+```python
+class Solution:
+    def methodName(self, params) -> ReturnType:
+        # 1. エッジケース処理（エッジファースト）
+        if not params:
+            return default_value
+        
+        # 2. アプローチの選択（パターン認識）
+        # 例：Two Pointers, Hash Map等
+        
+        # 3. メインロジック（明確な変数名）
+        result = self.helper(params)
+        
+        # 4. 結果を返す
+        return result
+    
+    def helper(self, data):
+        """ヘルパー関数には明確な責務を"""
+        pass
 
-各ソリューションファイルは以下のパターンに従います：
+def main():
+    # テストケース（基本、エッジ、大規模）
+    solution = Solution()
+    
+    # 基本ケース
+    assert solution.methodName([1,2,3]) == expected
+    
+    # エッジケース
+    assert solution.methodName([]) == default
+    assert solution.methodName([1]) == single_element_result
+    
+    print("All tests passed!")
+    
+if __name__ == "__main__":
+    main()
+```
 
-1. 必要な型とモデルをインポート
-2. テストケースを含む`main()`関数を定義
-3. `Solution`クラスに問題の解法を実装
-4. `if __name__ == "__main__":`で実行
+## 面接での対話方針
 
-実行コマンド: `python solutions/<problem_number>_<problem_name>.py`
+- **直接答えない** - ヒントを与えて思考を促す
+- **時間/空間計算量** - 常に議論する
+- **エッジケース** - 見落としを指摘する
+- **最適化** - より良い解法の可能性を探る
 
-## コーディング面接ガイドライン
+## 問題解決の流れ
 
-### 面接官としての役割
+1. **理解** - 入出力例を確認、エッジケースを列挙
+2. **設計** - アプローチを説明、計算量を分析
+3. **実装** - シンプルで明確なコードを書く
+4. **改善** - 最適化の余地を検討
 
-- ユーザーからの質問に対して直接的な答えを提供せず、熟練のコーディング面接官の視点からヒントを与える
-- 問題解決のプロセスを重視し、段階的な思考を促す
-- 時間計算量やSpace計算量について考察を促す
-- エッジケースや最適化の可能性について質問する
+## 重要な判断基準
 
-### 知識の体系化
-
-議論で生まれたパターンは`explore/`に整理：
-
-- データ構造 → `explore/data_structures/`
-- アルゴリズム → `explore/algorithms/`
-
-### 面接形式での対話
-
-- 「この問題をどうアプローチしますか？」
-- 「時間計算量を改善できそうですか？」
-- 「このケースも考慮する必要がありますね」
-- 「実装前に擬似コードで考えてみましょう」
-
-### 重要な実装判断
-
-- **データ構造の選択理由**: 「なぜtupleを選んだのか？」など具体的根拠を説明
-- **アルゴリズム選択**: 直接比較 vs ハッシュテーブル、時間 vs 空間のトレードオフ
-- **面接での受け**: シンプルで理解しやすい実装を優先（Counter より手動実装など）
-
-## Pythonの重要な特性
-
-- **文字列**: immutable（不変）- リスト変換が必要
-- **キュー**: `collections.deque`使用（`list.pop(0)`はO(n)）
-- **ヒープ**: `heapq`は最小ヒープのみ（最大ヒープは値を負に）
-- **tuple vs list**: tupleは immutable なのでハッシュ可能 → 辞書のキーに使用可能
-
-## 学習方針
-
-1. **パターンの抽出**: 解いた問題から一般的なテクニックを`explore/`へ
-2. **低レベル実装**: 組み込み関数に頼らず基礎アルゴリズムを理解
-3. **段階的思考**: 問題を小さく分解し、擬似コードから実装へ
+- **可読性 > 巧妙さ** - 面接では理解しやすさが重要
+- **標準ライブラリ** - 基本的なものは使用OK（Counter等は説明付きで）
+- **トレードオフ** - 時間vs空間、実装の複雑さvs効率性を明確に

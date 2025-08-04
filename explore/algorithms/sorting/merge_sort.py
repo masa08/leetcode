@@ -1,44 +1,46 @@
+from typing import List
+
+
 def main():
-    args = [5, 2, 3, 1, 4]
-    solution = Solution()
-    result = solution.merge_sort(args)
-    print(result)
+    test_cases = [
+        [],
+        [1],
+        [3, 1, 4, 1, 5, 9, 2, 6],
+        [5, 4, 3, 2, 1]
+    ]
+
+    for nums in test_cases:
+        print(f"\n元の配列: {nums}")
+        print(f"ソート後: {merge_sort(nums)}")
 
 
-class Solution:
-    def merge_sort(self, numbers):
-        if len(numbers) <= 1:
-            return numbers
-
-        center = len(numbers) // 2
-        left = numbers[:center]
-        right = numbers[center:]
-
-        self.merge_sort(left)
-        self.merge_sort(right)
-
-        i = j = k = 0
-        while i < len(left) and j < len(right):
-            if left[i] <= right[j]:
-                numbers[k] = left[i]
-                i += 1
-            else:
-                numbers[k] = right[j]
-                j += 1
-            k += 1
-
-        # 考慮されなかった余った部分に対する処理
-        while i < len(left):
-            numbers[k] = left[i]
-            i += 1
-            k += 1
-
-        while j < len(right):
-            numbers[k] = right[j]
-            j += 1
-            k += 1
-
+def merge_sort(numbers: List[int]) -> List[int]:
+    if len(numbers) <= 1:
         return numbers
+
+    mid = len(numbers) // 2
+    left = merge_sort(numbers[:mid])
+    right = merge_sort(numbers[mid:])
+
+    return merge(left, right)
+
+
+def merge(left: List[int], right: List[int]) -> List[int]:
+    result = []
+    i = j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    result.extend(left[i:])
+    result.extend(right[j:])
+
+    return result
 
 
 if __name__ == '__main__':

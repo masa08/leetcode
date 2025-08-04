@@ -1,16 +1,24 @@
 from typing import List
 
 
-def partition(numbers: List[int], low: int, high: int) -> int:
-    i = low - 1
-    pivot = numbers[high]
-    for j in range(low, high):
-        if numbers[j] <= pivot:
-            i = i + 1
-            numbers[i], numbers[j] = numbers[j], numbers[i]
+def main():
+    nums = [1, 8, 3, 9, 4, 5, 7]
+    print(f"nums: {nums}")
+    print(f"quick_sort: {quick_sort(nums)}")
 
-    numbers[i+1], numbers[high] = numbers[high], numbers[i+1]
-    return i+1
+
+def partition(numbers: List[int], low: int, high: int) -> int:
+    pivot = numbers[high]
+    store_index = low
+
+    for i in range(low, high):
+        if numbers[i] < pivot:
+            numbers[store_index], numbers[i] = numbers[i], numbers[store_index]
+            store_index += 1
+
+    numbers[store_index], numbers[high] = numbers[high], numbers[store_index]
+
+    return store_index
 
 
 def quick_sort(numbers: List[int]) -> List[int]:
@@ -25,5 +33,4 @@ def quick_sort(numbers: List[int]) -> List[int]:
 
 
 if __name__ == '__main__':
-    nums = [1, 8, 3, 9, 4, 5, 7]
-    print(quick_sort(nums))
+    main()

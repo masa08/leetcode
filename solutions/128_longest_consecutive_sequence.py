@@ -52,6 +52,26 @@ class Solution:
 
         return max_consecutive_length
 
+    def longestConsecutive2(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        nums.sort()
+        cur_consecutive_length = max_consecutive_length = 1
+
+        for i in range(1, len(nums)):
+            if nums[i-1] == nums[i]:
+                continue
+
+            if nums[i-1] + 1 == nums[i]:
+                cur_consecutive_length += 1
+                max_consecutive_length = max(
+                    cur_consecutive_length,
+                    max_consecutive_length
+                )
+            else:
+                cur_consecutive_length = 1
+        return max_consecutive_length
+
 
 if __name__ == '__main__':
     main()

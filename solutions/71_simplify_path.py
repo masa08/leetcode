@@ -23,7 +23,6 @@ class Solution:
             else:
                 stack.append(path)
 
-        print(stack)
         return '/' + '/'.join(stack)
 
 

@@ -2,22 +2,51 @@ from collections import defaultdict
 
 
 def main():
-    args = [1, 1, 1]
     solution = Solution()
-    result = solution.subarraySum(args, 2)
-    print(result)
+
+    # 基本ケース
+    assert solution.subarraySum([1, 1, 1], 2) == 2
+
+    # 正負の数を含む
+    assert solution.subarraySum([1, 2, 3], 3) == 2
+
+    # k=0のケース
+    assert solution.subarraySum([0, 0], 0) == 3
+
+    print("All tests passed!")
 
 
 class Solution:
     def subarraySum(self, nums, k):
-        count, curr_sum = 0, 0
-        sum_dict = defaultdict(int)
-        sum_dict[0] = 1
+        """
+        累積和とハッシュマップを使って部分配列の和がkになる個数を数える
 
-        for i in range(len(nums)):
-            curr_sum += nums[i]
-            count += sum_dict[curr_sum-k]
-            sum_dict[curr_sum] += 1
+        キーアイデア:
+        部分配列[i, j]の和 = prefix_sum[j] - prefix_sum[i-1] = k
+        つまり: prefix_sum[j] - k = prefix_sum[i-1]
+
+        現在の累積和からkを引いた値が過去に出現した回数が、
+        現在位置で終わる和がkの部分配列の個数になる
+        """
+        from collections import defaultdict
+
+        count, cur_prefix_sum = 0, 0
+        # 各累積和が何回出現したかを記録
+        prefix_sum_counter = defaultdict(int)
+        # 空の部分配列を表す（最初から現在までの和がkの場合に必要）
+        prefix_sum_counter[0] = 1
+
+        for num in nums:
+            # 現在位置までの累積和を計算
+            cur_prefix_sum += num
+
+            # 「現在の累積和 - k」が過去に出現していれば、
+            # その位置から現在位置までの部分配列の和がkになる
+            if cur_prefix_sum - k in prefix_sum_counter:
+                count += prefix_sum_counter[cur_prefix_sum - k]
+
+            # 現在の累積和を記録（将来の計算で使用）
+            prefix_sum_counter[cur_prefix_sum] += 1
 
         return count
 

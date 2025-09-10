@@ -6,12 +6,12 @@ def main():
 
     # 基本ケース
     assert solution.productExceptSelf([1, 2, 3, 4]) == [24, 12, 8, 6]
-
-    # ゼロを含むケース
-    assert solution.productExceptSelf([0, 1, 2]) == [2, 0, 0]
-
-    # エッジケース
-    assert solution.productExceptSelf([1, 1]) == [1, 1]
+    
+    # 最小サイズ
+    assert solution.productExceptSelf([1, 2]) == [2, 1]
+    
+    # ゼロを1つ含む
+    assert solution.productExceptSelf([-1, 1, 0, -3, 3]) == [0, 0, 9, 0, 0]
 
     print("All tests passed!")
 

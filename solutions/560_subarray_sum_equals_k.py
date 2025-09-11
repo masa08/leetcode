@@ -6,13 +6,17 @@ def main():
 
     # 基本ケース
     assert solution.subarraySum([1, 1, 1], 2) == 2
-
-    # 正負の数を含む
     assert solution.subarraySum([1, 2, 3], 3) == 2
-
-    # k=0のケース
-    assert solution.subarraySum([0, 0], 0) == 3
-
+    
+    # エッジケース
+    assert solution.subarraySum([1], 1) == 1  # 単一要素
+    assert solution.subarraySum([1], 0) == 0  # 単一要素、和が異なる
+    assert solution.subarraySum([], 0) == 0   # 空配列
+    
+    # 特殊ケース
+    assert solution.subarraySum([0, 0], 0) == 3  # ゼロの配列
+    assert solution.subarraySum([-1, -1, 1], 0) == 1  # 負の数を含む
+    
     print("All tests passed!")
 
 

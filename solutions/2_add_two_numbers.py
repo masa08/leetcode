@@ -4,12 +4,36 @@ from model import ListNode
 from utils import makeLinkedList, printLinkedListValue
 
 
+def linkedListToList(node: Optional[ListNode]) -> list:
+    result = []
+    while node:
+        result.append(node.value)
+        node = node.next
+    return result
+
+
 def main():
-    args1 = makeLinkedList([2, 4, 3])
-    args2 = makeLinkedList([5, 6, 4])
     solution = Solution()
-    result = solution.addTwoNumbers(args1, args2)
-    printLinkedListValue(result)
+
+    # 基本ケース: 342 + 465 = 807
+    l1 = makeLinkedList([2, 4, 3])
+    l2 = makeLinkedList([5, 6, 4])
+    result = solution.addTwoNumbers(l1, l2)
+    assert linkedListToList(result) == [7, 0, 8]
+
+    # エッジケース: 0 + 0 = 0
+    l1 = makeLinkedList([0])
+    l2 = makeLinkedList([0])
+    result = solution.addTwoNumbers(l1, l2)
+    assert linkedListToList(result) == [0]
+
+    # 桁上がりケース: 9999999 + 9999 = 10009998
+    l1 = makeLinkedList([9, 9, 9, 9, 9, 9, 9])
+    l2 = makeLinkedList([9, 9, 9, 9])
+    result = solution.addTwoNumbers(l1, l2)
+    assert linkedListToList(result) == [8, 9, 9, 9, 0, 0, 0, 1]
+
+    print("All tests passed!")
 
 
 class Solution:

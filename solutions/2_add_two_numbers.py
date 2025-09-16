@@ -1,15 +1,7 @@
 from typing import Optional
 
 from model import ListNode
-from utils import makeLinkedList, printLinkedListValue
-
-
-def linkedListToList(node: Optional[ListNode]) -> list:
-    result = []
-    while node:
-        result.append(node.value)
-        node = node.next
-    return result
+from utils import makeLinkedList, printLinkedListValue, linkedListToList
 
 
 def main():

@@ -1,8 +1,17 @@
 def main():
-    args = "abcabcbb"
     solution = Solution()
-    result = solution.lengthOfLongestSubstring(args)
-    print(result)
+
+    # 基本ケース
+    assert solution.lengthOfLongestSubstring("abcabcbb") == 3  # "abc"
+    assert solution.lengthOfLongestSubstring("bbbbb") == 1      # "b"
+    assert solution.lengthOfLongestSubstring("pwwkew") == 3     # "wke"
+
+    # エッジケース
+    assert solution.lengthOfLongestSubstring("") == 0           # 空文字列
+    assert solution.lengthOfLongestSubstring(" ") == 1          # スペース1文字
+    assert solution.lengthOfLongestSubstring("abcdefg") == 7    # 全て異なる文字
+
+    print("All tests passed!")
 
 
 class Solution:

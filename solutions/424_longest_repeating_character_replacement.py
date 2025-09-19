@@ -29,8 +29,7 @@ def main():
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        max_count = 0
-        max_length = 0
+        max_count = max_length = 0
         count = defaultdict(int)
 
         left = 0
@@ -38,7 +37,9 @@ class Solution:
             count[s[right]] += 1
             max_count = max(max_count, count[s[right]])
 
-            if right - left + 1 - max_count > k:
+            window_size = right - left + 1
+            chars_to_replace = window_size - max_count
+            if chars_to_replace > k:
                 count[s[left]] -= 1
                 left += 1
 

@@ -4,17 +4,23 @@ from typing import List
 
 
 def main():
-    arr = [4, 3, 1, 1, 3, 3, 2]
-    k = 3
     solution = Solution()
-    result = solution.findLeastNumOfUniqueInts(arr, k)
 
-    print(result)
+    # テストケース1: 基本ケース
+    assert solution.findLeastNumOfUniqueInts([4, 3, 1, 1, 3, 3, 2], 3) == 2
+
+    # テストケース2: エッジケース（空配列に近い）
+    assert solution.findLeastNumOfUniqueInts([1], 1) == 0
+
+    # テストケース3: 複数の同じ頻度
+    assert solution.findLeastNumOfUniqueInts([5, 5, 4], 1) == 1
+
+    print("All tests passed!")
 
 
 class Solution:
     # def findLeastNumOfUniqueInts(self, arr: List[int], k: int) -> int:
-    #     nums_count = sorted([b for (a,b) in Counter(arr).items()])
+    #     nums_count = sorted(Counter(arr).values())
     #     unique_numbers = len(nums_count)
     #     index = 0
 

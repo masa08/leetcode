@@ -1,96 +1,192 @@
 # バックトラッキング (Backtracking)
 
-全ての可能性を体系的に探索し、条件に合わない場合は戻って別の選択肢を試すアルゴリズムです。
+## 核心概念
 
-## 基本概念
+バックトラッキングは「**試行錯誤の体系化**」です。行き止まりに到達したら一歩戻って別の道を試す、という探索方法です。
 
-### バックトラッキングの流れ
+### 3つの本質的ステップ
 
-1. 選択肢を一つ選ぶ
-2. その選択が有効かチェック
-3. 有効なら次のステップへ進む
-4. 無効または行き詰まったら選択を取り消して戻る
-5. 他の選択肢を試す
+1. **選択 (Choose)** - 可能な選択肢から一つ選ぶ
+2. **探索 (Explore)** - その選択で再帰的に進む
+3. **取消 (Unchoose)** - 選択を取り消して戻る
 
-### 基本テンプレート
+### メンタルモデル
 
-```python
-def backtrack(path, choices):
-    # ベースケース（解を見つけた場合）
-    if is_solution(path):
-        result.append(path[:])  # コピーを保存
-        return
-    
-    # 選択肢を試す
-    for choice in choices:
-        if is_valid(choice, path):
-            # 選択
-            path.append(choice)
-            
-            # 再帰
-            backtrack(path, next_choices)
-            
-            # 選択を取り消し（バックトラック）
-            path.pop()
+```text
+        []
+      /    \
+    [1]    [2]    → 選択
+   /  \    /  \
+[1,2][1,3][2,1]...→ 探索
+  ↑              → 取消して別の道へ
 ```
 
-## 重要なパターン
+## 基本テンプレート
+
+```python
+def backtrack(state):
+    if is_solution(state):
+        results.append(state[:])  # コピーを保存
+        return
+
+    for choice in get_choices(state):
+        if not is_valid(state, choice):
+            continue  # 枝刈り
+
+        state.append(choice)      # 選択
+        backtrack(state)           # 探索
+        state.pop()                # 取消（重要！）
+```
+
+## 3つの主要パターン
 
 ### 1. 順列・組み合わせ
 
-- Permutations: 順序あり、重複なし
-- Combinations: 順序なし、重複なし
-- Combination Sum: 重複使用可能
+```python
+def permutations(nums):
+    result = []
 
-### 2. 部分集合 (Subset)
+    def backtrack(path):
+        if len(path) == len(nums):
+            result.append(path[:])
+            return
 
-- 全ての部分集合を生成
-- 条件を満たす部分集合のみ
+        for num in nums:
+            if num in path:
+                continue
+            path.append(num)
+            backtrack(path)
+            path.pop()
 
-### 3. グリッド上の経路探索
+    backtrack([])
+    return result
+```
 
-- N-Queens問題
-- Sudoku Solver
-- Word Search
+### 2. 部分集合
 
-### 4. 分割問題
+```python
+def subsets(nums):
+    result = []
 
-- Palindrome Partitioning
-- Restore IP Addresses
+    def backtrack(start, path):
+        result.append(path[:])
 
-## 最適化テクニック
+        for i in range(start, len(nums)):
+            path.append(nums[i])
+            backtrack(i + 1, path)  # i+1で重複回避
+            path.pop()
 
-### 1. 枝刈り (Pruning)
+    backtrack(0, [])
+    return result
+```
 
-- 早期に無効な選択肢を除外
-- 実行時間の大幅短縮
+### 3. 制約付き探索（N-Queens）
 
-### 2. 重複回避
+```python
+def solve_n_queens(n):
+    def is_safe(positions, row, col):
+        for i in range(row):
+            # 同じ列 or 対角線上にあるか
+            if positions[i] == col or \
+               positions[i] - i == col - row or \
+               positions[i] + i == col + row:
+                return False
+        return True
 
-- ソートして同じ要素をスキップ
-- visited配列で訪問済みをマーク
+    def backtrack(row, positions):
+        if row == n:
+            solutions.append(positions[:])
+            return
 
-### 3. メモ化
+        for col in range(n):
+            if is_safe(positions, row, col):
+                positions[row] = col
+                backtrack(row + 1, positions)
+                # positions[row]は次のループで上書きされるため明示的な取消不要
 
-- 部分問題の結果をキャッシュ
-- 動的プログラミングとの組み合わせ
+    solutions = []
+    backtrack(0, [-1] * n)
+    return solutions
+```
+
+## よくある間違いと対策
+
+### 1. 状態の復元忘れ
+
+```python
+# ❌ 間違い
+path.append(choice)
+backtrack(path)
+# pop()忘れ
+
+# ✅ 正解
+path.append(choice)
+backtrack(path)
+path.pop()  # 必ず復元
+```
+
+### 2. 参照の保存
+
+```python
+# ❌ 間違い
+result.append(path)  # 参照を保存
+
+# ✅ 正解
+result.append(path[:])  # コピーを保存
+```
+
+### 3. 無限ループ
+
+```python
+# ❌ 間違い
+backtrack(index, path)  # indexが変わらない
+
+# ✅ 正解
+backtrack(i + 1, path)  # 進行を保証
+```
+
+## 最適化の要点
+
+### 枝刈り（Pruning）
+
+```python
+# 早期に無効な選択肢を除外
+if not is_valid(choice):
+    continue  # この枝は探索しない
+```
+
+### 重複回避
+
+```python
+# ソートして同じ要素をスキップ
+nums.sort()
+if i > start and nums[i] == nums[i-1]:
+    continue
+```
+
+## 使い分け
+
+**バックトラッキングが適する場合：**
+
+- 全ての解を列挙する必要がある
+- 制約条件で早期に枝刈りできる
+- 解空間が比較的小さい
+
+**他の手法を検討すべき場合：**
+
+- 最適解が1つだけ必要 → BFS, DP
+- 部分問題の重複が多い → DP
+- 解空間が巨大で枝刈りが効かない → 貪欲法, ヒューリスティック
 
 ## 計算量
 
-- 時間計算量: 通常は指数時間 O(k^n)
-- 空間計算量: 再帰の深さに比例 O(n)
+- **時間**: O(分岐数^深さ) - 通常は指数時間
+- **空間**: O(深さ) - 再帰スタック
 
-## 典型的な問題
+## 代表的な問題
 
--  Letter Combinations of a Phone Number
--  Generate Parentheses
--  Combination Sum
--  Combination Sum II
--  Permutations
--  Permutations II
--  N-Queens
--  Combinations
--  Subsets
--  Subsets II
--  Palindrome Partitioning
--  Combination Sum III
+- [46. Permutations](https://leetcode.com/problems/permutations/)
+- [78. Subsets](https://leetcode.com/problems/subsets/)
+- [39. Combination Sum](https://leetcode.com/problems/combination-sum/)
+- [51. N-Queens](https://leetcode.com/problems/n-queens/)
+- [79. Word Search](https://leetcode.com/problems/word-search/)

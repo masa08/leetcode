@@ -42,8 +42,8 @@ class Solution:
                 return
 
             possible_letters = letters[digits[index]]
-            for letter in possible_letters:
-                path.append(letter)
+            for pl in possible_letters:
+                path.append(pl)
                 backtrack(index+1, path)
                 path.pop()
 

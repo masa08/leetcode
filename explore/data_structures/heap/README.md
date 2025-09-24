@@ -1,86 +1,64 @@
-# ヒープ (Heap)
+# Heap
 
-ヒープは完全二分木の性質を満たす特殊な木構造で、優先度付きキューの実装に使われます。
+## Core Concept
 
-## 基本概念
+A heap is a **complete binary tree** where every parent follows a simple rule:
 
-### ヒープの性質
+- **Max Heap**: parent ≥ children
+- **Min Heap**: parent ≤ children
 
-1. **完全二分木**: 最下段以外は全て埋まり、最下段は左から順に埋まる
-2. **ヒープ条件**:
-   - **最大ヒープ**: 親ノード ≥ 子ノード
-   - **最小ヒープ**: 親ノード ≤ 子ノード
+## Why Array?
 
-### 配列での表現
+Heap uses array representation for O(1) access:
 
-- 親ノード: `i`
-- 左の子: `2*i + 1`
-- 右の子: `2*i + 2`
-- 親: `(i-1) // 2`
+```text
+     0
+    / \
+   1   2
+  / \ /
+ 3  4 5
 
-## 主な操作
+Array: [0, 1, 2, 3, 4, 5]
+```
 
-### 1. 挿入 (Insert) - O(log n)
+Navigation formulas:
 
-1. 最後尾に要素を追加
-2. ヒープ条件を満たすまで上方向に交換（heapify up）
+- Parent of i: `(i-1) // 2`
+- Left child: `2i + 1`
+- Right child: `2i + 2`
 
-### 2. 削除 (Extract) - O(log n)
+## Two Key Operations
 
-1. ルート要素を取得
-2. 最後尾の要素をルートに移動
-3. ヒープ条件を満たすまで下方向に交換（heapify down）
+### Insert - O(log n)
 
-### 3. ヒープ構築 (Build Heap) - O(n)
+1. Add to end
+2. Bubble up until heap property restored
 
-- 配列から効率的にヒープを構築
+### Extract - O(log n)
 
-## 応用
+1. Take root (min/max)
+2. Move last element to root
+3. Bubble down until heap property restored
 
-### 1. 優先度付きキュー
-
-- タスクスケジューリング
-- イベント処理
-
-### 2. ヒープソート
-
-- O(n log n)の安定したソート
-
-### 3. Top K問題
-
-- K個の最大/最小要素を効率的に管理
-
-## Pythonでの使用
+## Python Usage
 
 ```python
 import heapq
 
-# 最小ヒープ（デフォルト）
-heap = []
-heapq.heappush(heap, 3)
-heapq.heappush(heap, 1)
-heapq.heappush(heap, 4)
+# Min heap (default)
+heap = [3, 1, 4]
+heapq.heapify(heap)        # O(n) - build heap
+heapq.heappush(heap, 2)     # O(log n)
+min_val = heapq.heappop(heap)  # O(log n)
 
-# 最小値を取得
-min_val = heapq.heappop(heap)  # 1
-
-# 最大ヒープの実現（値を負にする）
-max_heap = []
-heapq.heappush(max_heap, -3)
-heapq.heappush(max_heap, -1)
-heapq.heappush(max_heap, -4)
-max_val = -heapq.heappop(max_heap)  # 4
+# Max heap trick - negate values
+max_heap = [-x for x in [3, 1, 4]]
+heapq.heapify(max_heap)
+max_val = -heapq.heappop(max_heap)
 ```
 
-## ファイル構成
+## When to Use
 
-- `example.py`: ヒープの基本実装
-- `heap_sort.py`: ヒープソートの実装
-
-## 典型的な問題
-
-- Kth Largest Element in an Array
-- Top K Frequent Elements
-- Merge k Sorted Lists
-- Find Median from Data Stream
-- Kth Largest Element in a Stream
+- **Priority Queue**: Process highest/lowest priority first
+- **Top K Problems**: Keep K best/worst elements efficiently
+- **Streaming Median**: Maintain median as data arrives

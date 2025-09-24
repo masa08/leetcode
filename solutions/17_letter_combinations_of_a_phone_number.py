@@ -2,14 +2,33 @@ from typing import List
 
 
 def main():
-    args = "23"
     solution = Solution()
-    result = solution.letterCombinations(args)
-    print(result)
+
+    # 基本ケース
+    assert solution.letterCombinations(
+        "23") == ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
+    assert solution.letterCombinations("2") == ["a", "b", "c"]
+
+    # エッジケース
+    assert solution.letterCombinations("") == []
+    assert solution.letterCombinations("7") == ["p", "q", "r", "s"]
+
+    print("All tests passed!")
 
 
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
+        """
+        Generate all possible letter combinations from phone number digits
+
+        Approach: Backtracking (Depth-First Search)
+        - Choose one letter for each digit
+        - Add to result when all digits are processed
+        - Backtrack to try other choices
+
+        Time Complexity: O(4^n * n) - n is number of digits, worst case 4 letters (7,9)
+        Space Complexity: O(n) - recursion stack depth
+        """
         if len(digits) == 0:
             return []
 

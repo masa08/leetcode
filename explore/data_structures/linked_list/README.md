@@ -1,10 +1,8 @@
-# 連結リスト (Linked List)
+# Linked List
 
-連結リストは、各要素（ノード）が次の要素への参照を持つ線形データ構造です。
+A linear data structure where elements are linked using pointers.
 
-## 基本概念
-
-### ノードの構造
+## Core Concept
 
 ```python
 class ListNode:
@@ -13,78 +11,56 @@ class ListNode:
         self.next = next
 ```
 
-### 種類
+## Time Complexity
 
-1. **単方向連結リスト**: 各ノードが次のノードへの参照のみ持つ
-2. **双方向連結リスト**: 各ノードが前後のノードへの参照を持つ
-3. **循環連結リスト**: 最後のノードが最初のノードを指す
+| Operation | Time |
+|-----------|------|
+| Insert at head | O(1) |
+| Delete at head | O(1) |
+| Access/Search | O(n) |
+| Insert/Delete at position | O(n) |
 
-## 主な操作
+## Essential Patterns
 
-### 1. 挿入
+### Two Pointers (Fast & Slow)
 
-- **先頭に挿入**: O(1)
-- **末尾に挿入**: O(n)（tailポインタがあればO(1)）
-- **指定位置に挿入**: O(n)
+Used for:
 
-### 2. 削除
+- Cycle detection
+- Finding middle node
+- Finding nth from end
 
-- **先頭を削除**: O(1)
-- **末尾を削除**: O(n)
-- **指定位置を削除**: O(n)
+```python
+slow = fast = head
+while fast and fast.next:
+    slow = slow.next
+    fast = fast.next.next
+```
 
-### 3. 探索
+### Dummy Node
 
-- **値による探索**: O(n)
-- **インデックスによるアクセス**: O(n)
+Simplifies edge cases in operations like merge and delete.
 
-## 配列との比較
+```python
+dummy = ListNode(0)
+dummy.next = head
+```
 
-### 連結リストの利点
+### Reversal Pattern
 
-- 動的なサイズ変更が容易
-- 先頭への挿入・削除がO(1)
-- メモリの効率的な使用
+```python
+prev, curr = None, head
+while curr:
+    next_temp = curr.next
+    curr.next = prev
+    prev = curr
+    curr = next_temp
+```
 
-### 連結リストの欠点
+## Common Problems
 
-- ランダムアクセスができない
-- 追加のメモリ（ポインタ）が必要
-- キャッシュ効率が低い
-
-## 重要なテクニック
-
-### 1. Two Pointers（Fast & Slow）
-
-- サイクル検出
-- 中間ノードの検索
-- リストの長さ計算
-
-### 2. ダミーノード
-
-- エッジケースの処理を簡潔に
-
-### 3. 再帰的処理
-
-- リストの逆転
-- マージ操作
-
-## 応用
-
-- スタックの実装
-- キューの実装
-- LRUキャッシュ
-
-## ファイル構成
-
-- `base.py`: 連結リストの基本実装
-- `stack.py`: 連結リストを使ったスタックの実装
-
-## 典型的な問題
-
--  Reverse Linked List
--  Merge Two Sorted Lists
--  Linked List Cycle
--  Palindrome Linked List
--  Remove Nth Node From End of List
--  Intersection of Two Linked Lists
+1. **Reverse**: Iterative vs Recursive
+2. **Cycle Detection**: Floyd's algorithm
+3. **Merge**: Two sorted lists
+4. **Palindrome**: Fast/slow + reverse
+5. **Intersection**: Length difference technique

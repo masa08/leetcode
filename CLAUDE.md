@@ -1,69 +1,63 @@
 # CLAUDE.md
 
-LeetCodeソリューションリポジトリのClaude Code向けガイドライン。
+Claude Code guidelines for LeetCode solutions repository.
 
-## リポジトリ構造
+## Repository Structure
 
 ```text
 leetcode/
-├── solutions/        # 問題番号で管理（例: 1_two_sum.py）
-├── model/           # 共通データ構造（ListNode, TreeNode）
-├── utils/           # ヘルパー関数
-└── explore/         # パターンの抽象化
-    ├── algorithms/  # アルゴリズム手法
-    └── data_structures/  # データ構造実装
+├── solutions/       # Managed by problem number (e.g., 1_two_sum.py)
+├── model/           # Common data structures (ListNode, TreeNode)
+├── utils/           # Helper functions
+└── explore/         # Pattern abstractions
+    ├── algorithms/  # Algorithm techniques
+    └── data_structures/  # Data structure implementations
 ```
 
-## 学習リソース
+## Coding Principles
 
-1. **[LeetCode 75](https://leetcode.com/studyplan/leetcode-75/)** - 基礎固め
-2. **[Top Interview 150](https://leetcode.com/studyplan/top-interview-150/)** - 面接頻出問題
-3. **Cracking the Coding Interview** - 体系的学習
+### Top 5 Core Principles
 
-## コーディング原則
-
-### 最重要5原則
-
-#### 1. **UMPIRE法** - 体系的問題解決
+#### 1. **UMPIRE Method** - Systematic Problem Solving
 
 ```text
-U - Understand: 問題理解、エッジケース列挙
-M - Match: 既知パターンとマッチング
-P - Plan: アプローチ説明、計算量分析
-I - Implement: クリーンな実装
-R - Review: コードウォークスルー
-E - Evaluate: 時間/空間計算量の確認
+U - Understand: Comprehend problem, enumerate edge cases
+M - Match: Match with known patterns
+P - Plan: Explain approach, analyze complexity
+I - Implement: Clean implementation
+R - Review: Code walkthrough
+E - Evaluate: Verify time/space complexity
 ```
 
-💡 思考プロセスの明確さ、質問力、エッジケース考慮
+💡 Clear thought process, questioning ability, edge case consideration
 
-#### 2. **エッジファースト** - 防御的プログラミング
+#### 2. **Edge Cases First** - Defensive Programming
 
 ```python
 def solve(nums: List[int]) -> int:
-    # エッジケースを最初に処理
+    # Handle edge cases first
     if not nums:
         return 0
     if len(nums) == 1:
         return nums[0]
-    
-    # メインロジック
+
+    # Main logic
     # ...
 ```
 
-💡 堅牢性、プロダクションレディなコード
+💡 Robustness, production-ready code
 
-#### 3. **段階的最適化** - 正確性から効率性へ
+#### 3. **Progressive Optimization** - From Correctness to Efficiency
 
 ```python
-# Step 1: ブルートフォース O(n²)
+# Step 1: Brute Force O(n²)
 def twoSum_v1(nums, target):
     for i in range(len(nums)):
         for j in range(i+1, len(nums)):
             if nums[i] + nums[j] == target:
                 return [i, j]
 
-# Step 2: 最適化 O(n)
+# Step 2: Optimized O(n)
 def twoSum_v2(nums, target):
     seen = {}
     for i, num in enumerate(nums):
@@ -72,91 +66,91 @@ def twoSum_v2(nums, target):
         seen[num] = i
 ```
 
-💡 最適化能力、トレードオフの理解
+💡 Optimization skills, understanding trade-offs
 
-#### 4. **パターン認識** - 高頻度テクニック
+#### 4. **Pattern Recognition** - High-Frequency Techniques
 
-- **Two Pointers**: ソート済み配列、ペア探索
-- **Sliding Window**: 部分配列、部分文字列
-- **Hash Map**: O(1)ルックアップ
-- **DFS/BFS**: グラフ、ツリー探索
-- **Dynamic Programming**: 最適化問題
+- **Two Pointers**: Sorted arrays, pair searching
+- **Sliding Window**: Subarrays, substrings
+- **Hash Map**: O(1) lookup
+- **DFS/BFS**: Graph and tree traversal
+- **Dynamic Programming**: Optimization problems
 
-💡 問題解決の効率性、パターン適用力
+💡 Problem-solving efficiency, pattern application skills
 
-#### 5. **明確性優先** - 可読性とコミュニケーション
+#### 5. **Clarity First** - Readability and Communication
 
 ```python
-# 悪い例
+# Bad example
 def fn(a, n):
     i, j = 0, n-1
     while i < j:
         # ...
 
-# 良い例  
+# Good example
 def findPair(arr: List[int], target: int) -> List[int]:
     left, right = 0, len(arr) - 1
     while left < right:
-        # Two pointersで目標値のペアを探索
+        # Search for target pair using two pointers
 ```
 
-💡 チーム開発能力、保守性への配慮
+💡 Team collaboration skills, maintainability focus
 
-### 実装ガイドライン
+### Implementation Guidelines
 
 ```python
 class Solution:
     def methodName(self, params) -> ReturnType:
-        # 1. エッジケース処理（エッジファースト）
+        # 1. Edge case handling (Edge Cases First)
         if not params:
             return default_value
-        
-        # 2. アプローチの選択（パターン認識）
-        # 例：Two Pointers, Hash Map等
-        
-        # 3. メインロジック（明確な変数名）
+
+        # 2. Choose approach (Pattern Recognition)
+        # e.g., Two Pointers, Hash Map, etc.
+
+        # 3. Main logic (clear variable names)
         result = self.helper(params)
-        
-        # 4. 結果を返す
+
+        # 4. Return result
         return result
-    
+
     def helper(self, data):
-        """ヘルパー関数には明確な責務を"""
+        """Helper functions should have clear responsibilities"""
         pass
 
 def main():
-    # テストケース（基本、エッジ、大規模）
+    # Test cases (basic, edge, large scale)
     solution = Solution()
-    
-    # 基本ケース
+
+    # Basic cases
     assert solution.methodName([1,2,3]) == expected
-    
-    # エッジケース
+
+    # Edge cases
     assert solution.methodName([]) == default
     assert solution.methodName([1]) == single_element_result
-    
+
     print("All tests passed!")
     
 if __name__ == "__main__":
     main()
 ```
 
-## 面接での対話方針
+## Interview Communication Strategy
 
-- **直接答えない** - ヒントを与えて思考を促す
-- **時間/空間計算量** - 常に議論する
-- **エッジケース** - 見落としを指摘する
-- **最適化** - より良い解法の可能性を探る
+- **Don't answer directly** - Provide hints to encourage thinking
+- **Time/Space complexity** - Always discuss
+- **Edge cases** - Point out overlooked cases
+- **Optimization** - Explore possibilities for better solutions
 
-## 問題解決の流れ
+## Problem-Solving Flow
 
-1. **理解** - 入出力例を確認、エッジケースを列挙
-2. **設計** - アプローチを説明、計算量を分析
-3. **実装** - シンプルで明確なコードを書く
-4. **改善** - 最適化の余地を検討
+1. **Understand** - Verify input/output examples, enumerate edge cases
+2. **Design** - Explain approach, analyze complexity
+3. **Implement** - Write simple and clear code
+4. **Improve** - Consider optimization opportunities
 
-## 重要な判断基準
+## Key Decision Criteria
 
-- **可読性 > 巧妙さ** - 面接では理解しやすさが重要
-- **標準ライブラリ** - 基本的なものは使用OK（Counter等は説明付きで）
-- **トレードオフ** - 時間vs空間、実装の複雑さvs効率性を明確に
+- **Readability > Cleverness** - Understandability is crucial in interviews
+- **Standard libraries** - Basic ones are OK to use (Counter etc. with explanation)
+- **Trade-offs** - Be clear about time vs space, implementation complexity vs efficiency

@@ -19,7 +19,32 @@ class Solution:
         result = []
 
         def backtrack(start: int, path: List[int]):
-            # Add current subset
+            """
+            再帰の木構造イメージ (入力: [1, 2, 3])
+
+            backtrack(0, [])
+            ├─ [] を追加
+            ├─ i=0: 1を選択 → backtrack(1, [1])
+            │   ├─ [1] を追加
+            │   ├─ i=1: 2を選択 → backtrack(2, [1,2])
+            │   │   ├─ [1,2] を追加
+            │   │   └─ i=2: 3を選択 → backtrack(3, [1,2,3])
+            │   │       ├─ [1,2,3] を追加
+            │   │       └─ (ループ終了)
+            │   └─ i=2: 3を選択 → backtrack(3, [1,3])
+            │       ├─ [1,3] を追加
+            │       └─ (ループ終了)
+            ├─ i=1: 2を選択 → backtrack(2, [2])
+            │   ├─ [2] を追加
+            │   └─ i=2: 3を選択 → backtrack(3, [2,3])
+            │       ├─ [2,3] を追加
+            │       └─ (ループ終了)
+            └─ i=2: 3を選択 → backtrack(3, [3])
+                ├─ [3] を追加
+                └─ (ループ終了)
+
+            結果: [[], [1], [1,2], [1,2,3], [1,3], [2], [2,3], [3]]
+            """
             result.append(path[:])
 
             # Try adding each remaining element

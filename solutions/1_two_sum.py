@@ -21,18 +21,30 @@ def main():
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        """
+        Approach: Hash Map (One-pass)
+
+        1. Traverse the array once
+        2. For each element, check if (target - num) exists in the map
+        3. If found, return the indices; otherwise store current element
+
+        Time: O(n) - single pass through the array
+        Space: O(n) - hash map to store elements
+
+        Trade-off: Optimal solution using hash map for O(1) lookup
+        """
         seen = {}  # { value: index }
 
-        # Traverse the array and store elements in a map
         for index, num in enumerate(nums):
             remain = target - num
-            # if remain exists in a map, return indexs
             if remain in seen:
                 return [seen[remain], index]
-            # if not, store a index and continue
             seen[num] = index
 
-        # blute force
+        # Brute Force Alternative:
+        # Time: O(n²) - nested loops
+        # Space: O(1) - no extra space
+        #
         # for i in range(len(nums)):
         #     for j in range(i+1, len(nums)):
         #         if nums[j] == target - nums[i]:

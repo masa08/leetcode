@@ -3,6 +3,15 @@ from typing import List
 
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        """
+        Approach: Backtracking with duplicate handling
+        - Sort first to group duplicates together
+        - Skip duplicates at the same recursion level
+        - Use DFS to generate all unique subsets
+
+        Time: O(n * 2^n) - same as subsets without duplicates
+        Space: O(n) - recursion depth
+        """
         if not nums:
             return [[]]
 
@@ -10,38 +19,13 @@ class Solution:
         sorted_nums = sorted(nums)
 
         def backtrack(start_index, current_subset):
-            """
-            再帰の木構造イメージ (入力: [1, 2, 2] ソート済み)
-
-            backtrack(0, [])
-            ├─ [] を追加
-            ├─ i=0: 1を選択 → backtrack(1, [1])
-            │   ├─ [1] を追加
-            │   ├─ i=1: 2を選択 → backtrack(2, [1,2])
-            │   │   ├─ [1,2] を追加
-            │   │   └─ i=2: 2を選択 → backtrack(3, [1,2,2])
-            │   │       ├─ [1,2,2] を追加
-            │   │       └─ (range(3,3)でループ終了)
-            │   └─ i=2: 2を選択 (スキップ: i>1 and nums[2]==nums[1]) ✗
-            ├─ i=1: 2を選択 → backtrack(2, [2])
-            │   ├─ [2] を追加
-            │   └─ i=2: 2を選択 → backtrack(3, [2,2])
-            │       ├─ [2,2] を追加
-            │       └─ (range(3,3)でループ終了)
-            └─ i=2: 2を選択 (スキップ: i>0 and nums[2]==nums[1]) ✗
-
-            結果: [[], [1], [1,2], [1,2,2], [2], [2,2]]
-
-            重複回避のポイント:
-            - 同じレベル(start_index)で同じ数字を2回選ばない
-            - i > start_index: ループの2回目以降
-            - nums[i] == nums[i-1]: 前と同じ数字
-            """
             result.append(current_subset[:])
 
             for i in range(start_index, len(sorted_nums)):
                 is_not_first_element = i > start_index
                 is_same_as_previous = sorted_nums[i] == sorted_nums[i-1]
+                # Skip duplicate at same level to avoid generating same subset twice
+                # Works because array is sorted (duplicates are adjacent)
                 is_duplicate_at_same_level = is_not_first_element and is_same_as_previous
 
                 if is_duplicate_at_same_level:

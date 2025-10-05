@@ -16,6 +16,14 @@ def main():
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
+        """
+        Algorithm Overview:
+        Use sliding window with two pointers (left, right) and a set to track characters.
+        Expand window by moving right pointer, shrink from left when duplicate found.
+
+        Time Complexity: O(n) where n is length of string - each character visited at most twice
+        Space Complexity: O(min(n, m)) where m is charset size - set stores unique characters
+        """
         seen = set()
         left, max_length = 0, 0
 

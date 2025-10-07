@@ -1,5 +1,6 @@
 from typing import Optional
 from model.list_node import ListNode
+from utils.make_linked_list import makeLinkedList
 
 
 class Solution:
@@ -38,8 +39,8 @@ def main():
     solution = Solution()
 
     # Test case 1: Basic merge
-    list1 = ListNode.from_list([1, 2, 4])
-    list2 = ListNode.from_list([1, 3, 4])
+    list1 = makeLinkedList([1, 2, 4])
+    list2 = makeLinkedList([1, 3, 4])
     result = solution.mergeTwoLists(list1, list2)
     # Verify: [1,1,2,3,4,4]
     assert result.value == 1 and result.next.value == 1
@@ -52,19 +53,19 @@ def main():
 
     # Test case 3: One empty list
     list1 = None
-    list2 = ListNode.from_list([0])
+    list2 = makeLinkedList([0])
     result = solution.mergeTwoLists(list1, list2)
     assert result.value == 0
 
     # Test case 4: Different lengths
-    list1 = ListNode.from_list([1, 3, 5, 7])
-    list2 = ListNode.from_list([2, 4])
+    list1 = makeLinkedList([1, 3, 5, 7])
+    list2 = makeLinkedList([2, 4])
     result = solution.mergeTwoLists(list1, list2)
     assert result.value == 1 and result.next.value == 2
 
     # Test case 5: All elements in list1 smaller
-    list1 = ListNode.from_list([1, 2, 3])
-    list2 = ListNode.from_list([4, 5, 6])
+    list1 = makeLinkedList([1, 2, 3])
+    list2 = makeLinkedList([4, 5, 6])
     result = solution.mergeTwoLists(list1, list2)
     assert result.value == 1
 

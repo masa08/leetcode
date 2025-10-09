@@ -27,7 +27,19 @@ def main():
 
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        # Hash Table
+        """
+        Approach 1: Hash Table
+
+        Explanation:
+        - Store visited nodes in a set
+        - If we encounter a node already in the set, there's a cycle
+        - If we reach None, no cycle exists
+
+        Time complexity: O(n) - Visit each node once
+        Space complexity: O(n) - Store all nodes in set
+
+        Pattern: Hash Table for cycle detection
+        """
         # seen = set()
 
         # while head:
@@ -38,7 +50,19 @@ class Solution:
 
         # return False
 
-        # Floyd's Cycle Finding Algorithm
+        """
+        Approach 2: Floyd's Cycle Finding Algorithm (Tortoise and Hare)
+
+        Explanation:
+        - Use two pointers: slow moves 1 step, fast moves 2 steps
+        - If there's a cycle, fast will eventually catch up to slow
+        - If fast reaches None, no cycle exists
+
+        Time complexity: O(n) - Fast pointer travels at most 2n steps
+        Space complexity: O(1) - Only using two pointers
+
+        Pattern: Fast & Slow pointers (Floyd's algorithm)
+        """
         if head is None:
             return False
         slow = head

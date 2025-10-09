@@ -30,6 +30,20 @@ def main():
 
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        """
+        Add two numbers represented as linked lists in reverse order.
+
+        Algorithm: Simulate digit-by-digit addition with carry handling
+        - Traverse both lists simultaneously
+        - Add corresponding digits and carry from previous step
+        - Create new node for each digit sum (mod 10)
+        - Continue until both lists exhausted and no carry remains
+
+        Time Complexity: O(max(m, n)) where m and n are lengths of l1 and l2
+        Space Complexity: O(max(m, n)) for the result linked list
+
+        Pattern: Two Pointers (simultaneous traversal)
+        """
         dummy = ListNode()
         current = dummy
         carry = 0
@@ -51,29 +65,6 @@ class Solution:
             l1 = l1.next if l1 else None
             l2 = l2.next if l2 else None
         return dummy.next
-
-        # l1_arr, l2_arr = [], []
-
-        # # node to array
-        # while l1:
-        #     l1_arr.append(l1.value)
-        #     l1 = l1.next
-        # while l2:
-        #     l2_arr.append(l2.value)
-        #     l2 = l2.next
-
-        # reversed_l1_int = int("".join(map(str, l1_arr))[::-1])
-        # reversed_l2_int = int("".join(map(str, l2_arr))[::-1])
-
-        # total = reversed_l1_int + reversed_l2_int
-        # reversed_total_list = list(str(total))[::-1]
-
-        # result = copy = ListNode(int(reversed_total_list[0]))
-        # for digits in range(1, len(reversed_total_list)):
-        #     copy.next = ListNode(int(reversed_total_list[digits]))
-        #     copy = copy.next
-
-        # return result
 
 
 if __name__ == '__main__':

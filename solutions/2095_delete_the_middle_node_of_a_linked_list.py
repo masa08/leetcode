@@ -1,24 +1,32 @@
 import math
 from typing import Optional
+from utils.make_linked_list import makeLinkedList
+from utils.linked_list_to_list import linkedListToList
 
 
 def main():
-    # Create test data: Linked list
-    # Example: Linked list 1 -> 2 -> 3 -> 4 -> 5
-    # Adjust range for different test cases
-    nodes = [ListNode(i) for i in range(1, 6)]
-    for i in range(len(nodes) - 1):
-        nodes[i].next = nodes[i + 1]
-    head = nodes[0]
-
-    # Apply the solution
     solution = Solution()
-    result = solution.deleteMiddle(head)
 
-    current = result
-    while current:
-        print(current.val, end=" -> " if current.next else "\n")
-        current = current.next
+    # Test case 1: [1,3,4,7,1,2,6] -> [1,3,4,1,2,6]
+    args1 = [1, 3, 4, 7, 1, 2, 6]
+    assert linkedListToList(solution.deleteMiddle(
+        makeLinkedList(args1))) == [1, 3, 4, 1, 2, 6]
+
+    # Test case 2: [1,2,3,4] -> [1,2,4]
+    args2 = [1, 2, 3, 4]
+    assert linkedListToList(solution.deleteMiddle(
+        makeLinkedList(args2))) == [1, 2, 4]
+
+    # Test case 3: [2,1] -> [2]
+    args3 = [2, 1]
+    assert linkedListToList(
+        solution.deleteMiddle(makeLinkedList(args3))) == [2]
+
+    # Test case 4: [1] -> []
+    args4 = [1]
+    assert solution.deleteMiddle(makeLinkedList(args4)) is None
+
+    print("All tests passed!")
 
 
 # Definition for singly-linked list.
@@ -30,7 +38,18 @@ class ListNode:
 
 class Solution:
     def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # find target index
+        """
+        Explanation:
+        - First pass: Count total nodes
+        - Edge case: If only 1 node, return None
+        - Calculate middle index (count // 2)
+        - Second pass: Traverse to middle-1 and delete middle node
+
+        Time complexity: O(n) - Two passes through the list
+        Space complexity: O(1) - Only using pointers
+
+        Pattern: Two-pass linked list traversal
+        """
         dummy = head
         count = 0
         while dummy != None:
@@ -42,10 +61,8 @@ class Solution:
 
         delete_index = math.floor(count / 2)
 
-        # define prev and curr and delete index node
         prev = curr = head
         index = 0
-
         while curr != None:
             if index == delete_index:
                 prev.next = curr.next
@@ -55,30 +72,21 @@ class Solution:
             curr = curr.next
             index += 1
 
-        # return head
         return head
 
-        # another solution1
-        # if head.next == None:
-        #     return None
+        """
+        Optimized approach using Fast & Slow pointers:
 
-        # count = 0
-        # p1 = p2 = head
+        Explanation:
+        - Use two pointers: slow moves 1 step, fast moves 2 steps
+        - When fast reaches end, slow is at middle-1
+        - Delete slow.next (middle node)
 
-        # while p1:
-        #     count += 1
-        #     p1 = p1.next
+        Time complexity: O(n) - Single pass
+        Space complexity: O(1) - Only using pointers
 
-        # middle_index = count // 2
-
-        # for _ in range(middle_index-1):
-        #     p2 = p2.next
-
-        # p2.next = p2.next.next
-
-        # return head
-
-        # another solution2
+        Pattern: Fast & Slow pointers (Floyd's algorithm variant)
+        """
         # if head.next == None:
         #     return None
 

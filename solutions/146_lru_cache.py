@@ -1,31 +1,14 @@
-from collections import deque
+"""
+146. LRU Cache
+Medium
 
+Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.
 
-def main():
-    # 基本ケース
-    lru = LRUCache(2)
+Time Complexity: O(1) for both get and put
+Space Complexity: O(capacity)
 
-    lru.put(1, 1)
-    lru.put(2, 2)
-    assert lru.get(1) == 1  # 1を返す
-
-    lru.put(3, 3)           # 2を削除
-    assert lru.get(2) == -1  # -1を返す（削除済み）
-
-    lru.put(4, 4)           # 1を削除
-    assert lru.get(1) == -1  # -1を返す（削除済み）
-    assert lru.get(3) == 3  # 3を返す
-    assert lru.get(4) == 4  # 4を返す
-
-    # エッジケース - 容量1
-    lru_small = LRUCache(1)
-    lru_small.put(2, 1)
-    assert lru_small.get(2) == 1
-    lru_small.put(3, 2)
-    assert lru_small.get(2) == -1
-    assert lru_small.get(3) == 2
-
-    print("All tests passed!")
+Pattern: Hash Map + Doubly Linked List
+"""
 
 
 class ListNode:
@@ -36,7 +19,6 @@ class ListNode:
         self.prev = None
 
 
-# Least Recently Used (LRU) Cache Implementation
 class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
@@ -81,25 +63,26 @@ class LRUCache:
         node.next.prev = node.prev
 
 
-class FIFOCache:
-    def __init__(self, capacity: int):
-        self.capacity = capacity
-        self.cache = {}
-        self.order = deque()
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
 
-    def get(self, key: int) -> int:
-        return self.cache.get(key, -1)  # 順序は変更しない
 
-    def put(self, key: int, value: int) -> None:
-        if key in self.cache:
-            self.cache[key] = value
-        else:
-            if len(self.cache) >= self.capacity:
-                oldest = self.order.popleft()
-                del self.cache[oldest]
+def main():
+    # Basic test
+    lru = LRUCache(2)
+    lru.put(1, 1)
+    lru.put(2, 2)
+    assert lru.get(1) == 1
+    lru.put(3, 3)
+    assert lru.get(2) == -1
+    lru.put(4, 4)
+    assert lru.get(1) == -1
+    assert lru.get(3) == 3
+    assert lru.get(4) == 4
 
-            self.cache[key] = value
-            self.order.append(key)
+    print("All tests passed!")
 
 
 if __name__ == '__main__':

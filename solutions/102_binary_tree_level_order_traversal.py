@@ -5,14 +5,20 @@ from utils import makeTree
 
 
 def main():
-    # Convert array to BST
-    args = [3, 9, 20, None, None, 15, 7]
-    root = makeTree(args)
-
-    # Solve the problem
     solution = Solution()
-    result = solution.levelOrder(root)
-    print(result)
+
+    # Basic case
+    root = makeTree([3, 9, 20, None, None, 15, 7])
+    assert solution.levelOrder(root) == [[3], [9, 20], [15, 7]]
+
+    # Edge case: empty tree
+    assert solution.levelOrder(None) == []
+
+    # Edge case: single node
+    root = makeTree([1])
+    assert solution.levelOrder(root) == [[1]]
+
+    print("All tests passed!")
 
 
 class Solution:

@@ -2,11 +2,35 @@ from typing import List
 
 
 def main():
-    args = [["1", "1", "1", "1", "0"], ["1", "1", "0", "1", "0"],
-            ["1", "1", "0", "0", "0"], ["0", "0", "0", "0", "0"]]
     solution = Solution()
-    result = solution.numIslandsBfs(args)
-    print(result)
+
+    # DFS tests
+    # Basic case
+    grid1 = [["1", "1", "0"], ["1", "0", "0"], ["0", "0", "1"]]
+    assert solution.numIslandsDfs(grid1) == 2
+
+    # Single island
+    grid2 = [["1", "1"], ["1", "1"]]
+    assert solution.numIslandsDfs(grid2) == 1
+
+    # No islands
+    grid3 = [["0", "0"], ["0", "0"]]
+    assert solution.numIslandsDfs(grid3) == 0
+
+    # BFS tests
+    # Basic case
+    grid4 = [["1", "1", "0"], ["1", "0", "0"], ["0", "0", "1"]]
+    assert solution.numIslandsBfs(grid4) == 2
+
+    # Single island
+    grid5 = [["1", "1"], ["1", "1"]]
+    assert solution.numIslandsBfs(grid5) == 1
+
+    # No islands
+    grid6 = [["0", "0"], ["0", "0"]]
+    assert solution.numIslandsBfs(grid6) == 0
+
+    print("All tests passed!")
 
 
 class Solution:

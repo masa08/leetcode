@@ -1,6 +1,7 @@
 from typing import List
 
 
+# TODO: ok/ngのイメージ
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         """

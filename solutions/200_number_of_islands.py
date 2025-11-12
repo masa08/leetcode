@@ -34,8 +34,12 @@ def main():
 
 
 class Solution:
-    # dfs
     def numIslandsDfs(self, grid: List[List[str]]) -> int:
+        """
+        DFS approach: Mark visited cells as "0" to avoid revisiting
+        Time: O(m*n) - visit each cell once
+        Space: O(m*n) - worst case recursion depth when entire grid is one island
+        """
         def _dfs(grid, r, c):
             if (r < 0 or c < 0 or r >= len(grid) or c >= len(grid[0])):
                 return
@@ -60,8 +64,13 @@ class Solution:
 
         return result
 
-    # bfs
     def numIslandsBfs(self, grid: List[List[str]]) -> int:
+        """
+        BFS approach: Use queue to explore connected cells level by level
+        Time: O(m*n) - visit each cell once
+        Space: O(min(m,n)) - queue holds "wave front" of BFS traversal
+               Maximum queue size limited by grid's shorter dimension
+        """
         def _bfs(grid, r, c):
             queue = [[r, c]]
 

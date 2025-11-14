@@ -3,14 +3,30 @@ from typing import List
 
 
 def main():
-    args = [[2, 1, 1], [1, 1, 0], [0, 1, 1]]
     solution = Solution()
-    result = solution.orangesRotting(args)
-    print(result)
+
+    # Basic case - rot spreads to all oranges
+    assert solution.orangesRotting([[2, 1, 1], [1, 1, 0], [0, 1, 1]]) == 4
+
+    # Edge case - no fresh oranges
+    assert solution.orangesRotting([[2]]) == 0
+
+    # Edge case - isolated fresh orange (impossible to rot)
+    assert solution.orangesRotting([[2, 1, 1], [0, 1, 1], [1, 0, 1]]) == -1
+
+    print("All tests passed!")
 
 
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
+        """
+        BFS (Multi-source BFS)
+        - Start BFS from all initially rotten oranges
+        - Each minute, rot spreads to adjacent fresh oranges
+
+        Time Complexity: O(rows * cols) - visit each cell at most once
+        Space Complexity: O(rows * cols) - queue can hold up to all cells
+        """
         rows, cols = len(grid), len(grid[0])
         directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
         fresh_oranges_count = 0

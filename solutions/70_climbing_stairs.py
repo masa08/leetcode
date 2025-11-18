@@ -1,12 +1,29 @@
 def main():
-    args = 5
     solution = Solution()
-    result = solution.climbStairs(args)
-    print(result)
+
+    # Basic cases
+    assert solution.climbStairs(2) == 2
+    assert solution.climbStairs(3) == 3
+
+    # Edge cases
+    assert solution.climbStairs(1) == 1
+
+    # Large case
+    assert solution.climbStairs(5) == 8
+
+    print("All tests passed!")
 
 
 class Solution:
     def climbStairs(self, n: int) -> int:
+        """
+        Dynamic Programming approach
+        - Each step can be reached from (i-1)th step or (i-2)th step
+        - dp[i] = dp[i-1] + dp[i-2] (Fibonacci sequence)
+
+        Time Complexity: O(n)
+        Space Complexity: O(n)
+        """
         if n == 1:
             return 1
 

@@ -2,14 +2,31 @@ from typing import List
 
 
 def main():
-    args = [10, 15, 20]
     solution = Solution()
-    result = solution.minCostClimbingStairs(args)
-    print(result)
+
+    # Basic cases
+    assert solution.minCostClimbingStairs([10, 15, 20]) == 15
+    assert solution.minCostClimbingStairs(
+        [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]) == 6
+
+    # Edge cases
+    assert solution.minCostClimbingStairs([0, 0]) == 0
+    assert solution.minCostClimbingStairs([1, 1]) == 1
+
+    print("All tests passed!")
 
 
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
+        """
+        Dynamic Programming approach
+        - At each step, choose minimum cost from (i-1)th or (i-2)th step
+        - dp[i] = cost[i] + min(dp[i-1], dp[i-2])
+        - Final answer is min of last two steps (can reach top from either)
+
+        Time Complexity: O(n)
+        Space Complexity: O(n)
+        """
         dp = [0 for _ in range(len(cost))]
         dp[0] = cost[0]
         dp[1] = cost[1]

@@ -11,7 +11,7 @@ Pattern: Hash Map + Doubly Linked List
 """
 
 
-class ListNode:
+class Node:
     def __init__(self, key, val):
         self.key = key
         self.val = val
@@ -22,43 +22,44 @@ class ListNode:
 class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.dic = {}
-        self.head = ListNode(-1, -1)
-        self.tail = ListNode(-1, -1)
+        self.key_to_node = {}
+        self.head = Node(-1, -1)
+        self.tail = Node(-1, -1)
         self.head.next = self.tail
         self.tail.prev = self.head
 
     def get(self, key: int) -> int:
-        if key not in self.dic:
+        if key not in self.key_to_node:
             return -1
 
-        node = self.dic[key]
-        self.remove(node)
-        self.add(node)
+        node = self.key_to_node[key]
+        self._remove_from_list(node)
+        self._add_to_list(node)
         return node.val
 
     def put(self, key: int, value: int) -> None:
-        if key in self.dic:
-            old_node = self.dic[key]
-            self.remove(old_node)
+        if key in self.key_to_node:
+            old_node = self.key_to_node[key]
+            self._remove_from_list(old_node)
+            del self.key_to_node[key]
 
-        node = ListNode(key, value)
-        self.dic[key] = node
-        self.add(node)
-
-        if len(self.dic) > self.capacity:
+        if len(self.key_to_node) >= self.capacity:
             node_to_delete = self.head.next
-            self.remove(node_to_delete)
-            del self.dic[node_to_delete.key]
+            self._remove_from_list(node_to_delete)
+            del self.key_to_node[node_to_delete.key]
 
-    def add(self, node):
+        node = Node(key, value)
+        self.key_to_node[key] = node
+        self._add_to_list(node)
+
+    def _add_to_list(self, node):
         previous_end = self.tail.prev
         previous_end.next = node
         node.prev = previous_end
         node.next = self.tail
         self.tail.prev = node
 
-    def remove(self, node):
+    def _remove_from_list(self, node):
         node.prev.next = node.next
         node.next.prev = node.prev
 

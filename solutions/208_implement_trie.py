@@ -33,20 +33,20 @@ class Trie:
         current.is_end = True
 
     def search(self, word: str) -> bool:
-        current = self.root
-        for char in word:
-            if char not in current.children:
-                return False
-            current = current.children[char]
-        return current.is_end
+        node = self._find_node(word)
+        return node is not None and node.is_end
 
     def startsWith(self, prefix: str) -> bool:
+        return self._find_node(prefix) is not None
+
+    def _find_node(self, path: str):
+        """Traverse the trie along the path and return the node at the end, or None if not found."""
         current = self.root
-        for char in prefix:
+        for char in path:
             if char not in current.children:
-                return False
+                return None
             current = current.children[char]
-        return True
+        return current
 
 
 if __name__ == '__main__':

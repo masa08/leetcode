@@ -41,10 +41,12 @@ class Solution:
                 return [seen[remain], index]
             seen[num] = index
 
+        # """
         # Brute Force Alternative:
         # Time: O(n²) - nested loops
         # Space: O(1) - no extra space
-        #
+        # """
+
         # for i in range(len(nums)):
         #     for j in range(i+1, len(nums)):
         #         if nums[j] == target - nums[i]:

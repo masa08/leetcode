@@ -28,6 +28,11 @@ class Solution:
         left, max_length = 0, 0
 
         for right in range(len(s)):
+            # If s[right] is already in the window, we have a duplicate.
+            # Shrink the window from the left until the duplicate is removed.
+            # e.g. seen={a,b,c}, s[right]='a'
+            #   remove 'a', move left forward → seen={b,c}
+            #   duplicate resolved, exit while loop
             while s[right] in seen:
                 seen.remove(s[left])
                 left += 1

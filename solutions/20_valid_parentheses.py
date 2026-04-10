@@ -1,29 +1,45 @@
 def main():
-    args = "()"
     solution = Solution()
-    result = solution.isValid(args)
 
-    print(result)
+    # Basic cases
+    assert solution.isValid("()") is True
+    assert solution.isValid("()[]{}") is True
+    assert solution.isValid("{[]}") is True
+
+    # Edge cases
+    assert solution.isValid("(]") is False        # Mismatched pair
+    assert solution.isValid("([)]") is False       # Wrong nesting order
+    # Closing bracket with empty stack
+    assert solution.isValid(")") is False
+    assert solution.isValid("(") is False          # Unclosed bracket
+
+    print("All tests passed!")
 
 
 class Solution:
-    def isValid(self, symbles: str) -> bool:
+    def isValid(self, s: str) -> bool:
+        """
+        Use a stack to match opening and closing brackets.
+        Push opening brackets, pop on matching closing brackets.
+        If a closing bracket doesn't match the top of stack, it's invalid.
+
+        Time: O(n) - single pass through the string
+        Space: O(n) - stack stores opening brackets
+        """
         mapping = {')': '(', '}': '{', ']': '['}
         stack = []
 
-        for symble in symbles:
-            # check if a symble is ), }, or ]
-            if symble in mapping:
-                # if latest symble is valid, pop the value from stack
-                latest_symble = stack[-1] if len(stack) > 0 else None
-                if latest_symble and latest_symble == mapping[symble]:
+        for char in s:
+            if char in mapping:
+                # Closing bracket: must match the most recent opening bracket
+                top = stack[-1] if stack else None
+                if top == mapping[char]:
                     stack.pop()
                 else:
-                    stack.append(symble)
+                    return False
             else:
-                stack.append(symble)
+                stack.append(char)
 
-        # if valid symbles, stack will be empty
         return len(stack) == 0
 
 

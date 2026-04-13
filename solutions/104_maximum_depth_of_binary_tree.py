@@ -19,33 +19,40 @@ def main():
 
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
+        """
+        DFS (recursive): depth = 1 + max(left depth, right depth).
+        Alternative: BFS counting levels with a queue - see maxDepth_bfs below.
+
+        Time: O(n) - visit each node once
+        Space: O(h) - recursion call stack, h = height of tree
+        """
         if not root:
             return 0
 
-        # DFS approach (Recursive) - PREFERRED for this problem
-        # - Visit left and right subtrees recursively
-        # - Return 1 + max depth of subtrees
-        # - Time: O(n), Space: O(h) where h is height (call stack)
-        # - WHY DFS?: Simpler code, naturally fits "depth" concept
-        #   Space is better for balanced trees: O(log n) vs O(n/2) for BFS
         return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
 
-        # BFS approach (Iterative)
-        # - Process nodes level by level using queue
-        # - Count depth by tracking each level
-        # - Time: O(n), Space: O(w) where w is max width
-        # - Use when: Need level-order processing (not just depth)
-        # queue = [root]
-        # depth = 0
-        # while queue:
-        #     for _ in range(len(queue)):
-        #         q = queue.pop(0)
-        #         if q and q.left:
-        #             queue.append(q.left)
-        #         if q and q.right:
-        #             queue.append(q.right)
-        #     depth += 1
-        # return depth
+    def maxDepth_bfs(self, root: Optional[TreeNode]) -> int:
+        """
+        BFS (iterative): process nodes level by level, count depth.
+
+        Time: O(n) - visit each node once
+        Space: O(w) - queue stores at most one level, w = max width
+        """
+        if not root:
+            return 0
+
+        queue = [root]
+        depth = 0
+        while queue:
+            for _ in range(len(queue)):
+                node = queue.pop(0)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            depth += 1
+
+        return depth
 
 
 if __name__ == '__main__':

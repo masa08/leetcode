@@ -1,24 +1,38 @@
 from typing import List
 
 
+def main():
+    solution = Solution()
+
+    # Basic cases
+    result1 = solution.subsets([1, 2, 3])
+    assert len(result1) == 8
+    assert [] in result1
+    assert [1, 2, 3] in result1
+
+    # Edge cases
+    assert solution.subsets([0]) == [[], [0]]
+    assert solution.subsets([]) == [[]]
+
+    # Two elements
+    result2 = solution.subsets([1, 2])
+    assert sorted(result2) == [[], [1], [1, 2], [2]]
+
+    print("All tests passed!")
+
+
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         """
-        Approach: Backtracking
-        - Use DFS to generate all subsets
-        - Each element has 2 choices: include or exclude
-        - No duplicate handling needed (all elements unique)
+        Backtracking: at each step, add current path to result,
+        then try appending each remaining element (from start onward).
 
         Time: O(n * 2^n) - generate 2^n subsets, each takes O(n) to copy
         Space: O(n) - recursion depth
         """
-        # Edge case
-        if not nums:
-            return [[]]
-
         result = []
 
-        def backtrack(start: int, path: List[int]):
+        def backtrack(start, path):
             result.append(path[:])
 
             for i in range(start, len(nums)):
@@ -28,27 +42,6 @@ class Solution:
 
         backtrack(0, [])
         return result
-
-
-def main():
-    solution = Solution()
-
-    # Basic cases
-    result1 = solution.subsets([1, 2, 3])
-    assert len(result1) == 8  # 2^3
-    assert [] in result1
-    assert [1, 2, 3] in result1
-
-    # Edge cases
-    assert solution.subsets([0]) == [[], [0]]
-    assert solution.subsets([1]) == [[], [1]]
-
-    # Two elements
-    result2 = solution.subsets([1, 2])
-    assert len(result2) == 4  # 2^2
-    assert sorted([sorted(s) for s in result2]) == [[], [1], [1, 2], [2]]
-
-    print("All tests passed!")
 
 
 if __name__ == "__main__":
